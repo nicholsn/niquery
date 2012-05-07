@@ -20,12 +20,26 @@
             <xcede2:handedness>right</xcede2:handedness>
         </xcede2:subjectInfo>
     </xcede2:subject>
-    <xcede2:acquisition ID="REST1" subjectID="AnnArbor_sub04111" projectID="fcon_1000" type="niq:resting_state_fmri" >
-        <xcede2:resourceList>
-        </xcede2:resourceList>
-        <xcede2:dataResourceRef ID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" URI="http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz"/>
+    <xcede2:acquisition ID="mprage_anonymized" subjectID="AnnArbor_sub04111" projectID="fcon_1000" type="niq:structural_mri" >
+        <xcede2:acquisitionInfo xsi:type="xcede2:mrAcquisitionInfo_t">
+            <xcede2:fieldStrength>3.0</xcede2:fieldStrength>
+        </xcede2:acquisitionInfo>
+        <xcede2:dataResourceRef ID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" URI="http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_anat_mprage_anonymized.nii.gz/resources/11912/files/scan_mprage_anonymized.nii.gz"/>
     </xcede2:acquisition>
-    <xcede2:resource xsi:type="xcede2:nifti4D_t" ID="REST1" dataResourceID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" acquisitionID="REST1" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
+    <xcede2:resource xsi:type="xcede2:nifti_t" ID="mprage_anonymized_nifti" dataResourceID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" acquisitionID="mprage_anonymized" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
+        <xcede2:uri offset="0" size="3914814">http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_anat_mprage_anonymized.nii.gz/resources/11912/files/scan_mprage_anonymized.nii.gz</xcede2:uri>
+        <xcede2:elementType>int16</xcede2:elementType>
+        <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
+        <xcede2:compression>gz</xcede2:compression>
+    </xcede2:resource>
+    <xcede2:acquisition ID="func_rest" subjectID="AnnArbor_sub04111" projectID="fcon_1000" type="niq:resting_state_fmri" >
+        <xcede2:acquisitionInfo xsi:type="xcede2:mrAcquisitionInfo_t">
+            <xcede2:tr>1.0</xcede2:tr>
+            <xcede2:fieldStrength>3.0</xcede2:fieldStrength>
+        </xcede2:acquisitionInfo>
+        <xcede2:dataResourceRef ID="AnnArbor_sub04111_func_rest.nii.gz" URI="http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz"/>
+    </xcede2:acquisition>
+    <xcede2:resource xsi:type="xcede2:nifti_t" ID="func_rest_nifti" dataResourceID="AnnArbor_sub04111_func_rest.nii.gz" acquisitionID="rest_func" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
         <xcede2:uri offset="0" size="64860721">http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz</xcede2:uri>
         <xcede2:elementType>int16</xcede2:elementType>
         <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
