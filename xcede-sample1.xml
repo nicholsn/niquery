@@ -21,12 +21,14 @@
         </xcede2:subjectInfo>
     </xcede2:subject>
     <xcede2:acquisition ID="REST1" subjectID="AnnArbor_sub04111" projectID="fcon_1000" type="niq:resting_state_fmri" >
+        <xcede2:resourceList>
+        </xcede2:resourceList>
         <xcede2:dataResourceRef ID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" URI="http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz"/>
     </xcede2:acquisition>
-    <xcede2:resource xsi:type="xcede2:binaryDataResource_t" ID="REST1" dataResourceID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" acquisitionID="REST1" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
+    <xcede2:resource xsi:type="xcede2:nifti4D_t" ID="REST1" dataResourceID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" acquisitionID="REST1" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
         <xcede2:uri offset="0" size="64860721">http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz</xcede2:uri>
         <xcede2:elementType>int16</xcede2:elementType>
         <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
         <xcede2:compression>gz</xcede2:compression>
-    </xcede2:resource>   
+    </xcede2:resource>
 </xcede2:XCEDE>

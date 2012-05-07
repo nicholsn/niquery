@@ -1969,7 +1969,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="nifti4D_t">
+	<xs:complexType name="nifti_t">
 		<xs:complexContent>
 			<xs:extension base="binaryDataResource_t"/>
 		</xs:complexContent>
