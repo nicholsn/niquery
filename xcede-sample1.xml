@@ -4,6 +4,8 @@
  xmlns:niq="http://www.niquery.org"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.xcede.org/xcede-2 https://raw.github.com/niquery/niquery/master/xcede-2.1-niq.xsd" version="2.1">
+
+<!-- PROJECT - provides header level information about subjects and the projects they belong to -->
     <xcede2:project ID="fcon_1000">
         <xcede2:projectInfo>
             <xcede2:subjectGroupList>
@@ -13,6 +15,8 @@
             </xcede2:subjectGroupList>
         </xcede2:projectInfo>
     </xcede2:project>
+
+<!-- SUBJECT - provides demographic information about a subject that is considered static. Note that dynamic information (e.g., age or even gender) may be better captured as an acquisition of demographic information -->
     <xcede2:subject ID="AnnArbor_sub04111">
         <xcede2:subjectInfo>
             <xcede2:sex>male</xcede2:sex>
@@ -20,18 +24,15 @@
             <xcede2:handedness>right</xcede2:handedness>
         </xcede2:subjectInfo>
     </xcede2:subject>
+
+<!-- ACQUISITION - provides information about the collection of a particular type of data -->
     <xcede2:acquisition ID="mprage_anonymized" subjectID="AnnArbor_sub04111" projectID="fcon_1000" type="niq:structural_mri" >
         <xcede2:acquisitionInfo xsi:type="xcede2:mrAcquisitionInfo_t">
             <xcede2:fieldStrength>3.0</xcede2:fieldStrength>
         </xcede2:acquisitionInfo>
         <xcede2:dataResourceRef ID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" URI="http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_anat_mprage_anonymized.nii.gz/resources/11912/files/scan_mprage_anonymized.nii.gz"/>
     </xcede2:acquisition>
-    <xcede2:resource xsi:type="xcede2:nifti_t" ID="mprage_anonymized_nifti" dataResourceID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" acquisitionID="mprage_anonymized" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
-        <xcede2:uri offset="0" size="3914814">http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_anat_mprage_anonymized.nii.gz/resources/11912/files/scan_mprage_anonymized.nii.gz</xcede2:uri>
-        <xcede2:elementType>int16</xcede2:elementType>
-        <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
-        <xcede2:compression>gz</xcede2:compression>
-    </xcede2:resource>
+    
     <xcede2:acquisition ID="func_rest" subjectID="AnnArbor_sub04111" projectID="fcon_1000" type="niq:resting_state_fmri" >
         <xcede2:acquisitionInfo xsi:type="xcede2:mrAcquisitionInfo_t">
             <xcede2:tr>1.0</xcede2:tr>
@@ -39,6 +40,15 @@
         </xcede2:acquisitionInfo>
         <xcede2:dataResourceRef ID="AnnArbor_sub04111_func_rest.nii.gz" URI="http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz"/>
     </xcede2:acquisition>
+
+<!-- RESOURCE - provides information about data that is not natively represented in XML (e.g., a NIfTI file located at a given URI -->
+    <xcede2:resource xsi:type="xcede2:nifti_t" ID="mprage_anonymized_nifti" dataResourceID="AnnArbor_sub04111_anat_mprage_anonymized.nii.gz" acquisitionID="mprage_anonymized" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
+        <xcede2:uri offset="0" size="3914814">http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_anat_mprage_anonymized.nii.gz/resources/11912/files/scan_mprage_anonymized.nii.gz</xcede2:uri>
+        <xcede2:elementType>int16</xcede2:elementType>
+        <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
+        <xcede2:compression>gz</xcede2:compression>
+    </xcede2:resource>
+
     <xcede2:resource xsi:type="xcede2:nifti_t" ID="func_rest_nifti" dataResourceID="AnnArbor_sub04111_func_rest.nii.gz" acquisitionID="rest_func" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
         <xcede2:uri offset="0" size="64860721">http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz</xcede2:uri>
         <xcede2:elementType>int16</xcede2:elementType>
