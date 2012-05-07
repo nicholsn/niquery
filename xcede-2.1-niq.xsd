@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns="http://www.xcede.org/xcede-2" xmlns:xcede2="http://www.xcede.org/xcede-2"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.xcede.org/xcede-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.xcede.org/xcede-2"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:annotation>
 		<xs:documentation>The XCEDE schema provides an extensive metadata hierarchy for describing and documenting research and clinical studies. The schema organizes information into five general hierarchical levels: a complete project; studies within a project; subjects involved in the studies; visits for each of the subjects; the full description of the subject's participation during each visit</xs:documentation>
 		<xs:documentation>Each of these sub-schemas is composed of information relevant to that aspect of an experiment and can be stored in separate XML files or spliced into one large file allowing for the XML data to be stored in a hierarchical directory structure along with the primary data. Each sub-schema also allows for the storage of data provenance information allowing for a traceable record of processing and/or changes to the underlying data. Additionally, the sub-schemas contain support for derived statistical data in the form of human imaging activation maps and simple statistical value lists.</xs:documentation>
@@ -162,6 +163,10 @@
 		<xs:attribute name="dataID"/>
 		<xs:attribute name="dataURI"/>
 	</xs:attributeGroup>
+	<xs:attributeGroup name="dataResourceRef_ag">
+		<xs:attribute name="dataResourceID"/>
+		<xs:attribute name="dataResourceURI"/>
+	</xs:attributeGroup>
 	<xs:attributeGroup name="analysisRef_ag">
 		<xs:attribute name="analysisID"/>
 		<xs:attribute name="analysisURI"/>
@@ -294,6 +299,7 @@
 						<xs:appinfo xcede2:firstAppearedIn="2.1"/>
 					</xs:annotation>
 				</xs:attributeGroup>
+				<xs:attributeGroup ref="dataResourceRef_ag"/>
 				<xs:attributeGroup ref="analysisRef_ag">
 					<xs:annotation>
 						<xs:appinfo xcede2:firstAppearedIn="2.1"/>
@@ -827,6 +833,11 @@
 					</xs:element>
 				</xs:sequence>
 			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nifti4D_t">
+		<xs:complexContent>
+			<xs:extension base="binaryDataResource_t"/>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="frag_uri_t">
