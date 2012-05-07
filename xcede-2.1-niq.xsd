@@ -629,6 +629,1140 @@
 		</xs:complexContent>
 	</xs:complexType>
 	<!--*********            Resource types            *********-->
+	<xs:complexType name="mrAcquisitionInfo_t">
+		<xs:annotation>
+			<xs:documentation>This type includes several fields relevant to MR image acquisition.  It borrows from DICOM terminology (and indeed refers to it explicitly as the nomenclature from which one can find the definitions of the fields).  Fields come from the General Equipment, Image Pixel, Image Plane, Image Acquisition Results, and MR Image DICOM modules.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="acquisitionInfo_t">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="scanner" type="scanner_t"/>
+					<xs:element minOccurs="0" name="rows">
+						<xs:annotation>
+							<xs:documentation>DICOM (0028,0010): Rows</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Rows" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="rows" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0028,0010" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Rows" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="columns">
+						<xs:annotation>
+							<xs:documentation>DICOM (0028,0010): Columns</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Columns" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="cols" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0028,0010" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Columns" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="sliceThickness">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0050): Slice Thickness</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Slice Thickness" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="slThick" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0050" name="termID" type="xs:string"/>
+									<xs:attribute fixed="Image Plane:Slice Thickness"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="protocolName">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1030): Protocol Name</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Protocol Name" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="protocolName" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1030" name="termID" type="xs:string"/>
+									<xs:attribute fixed="Image Acquisition Results:Protocol Name"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="scanningSequence">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0020): Scanning Sequence</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Scanning Sequence" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="scanSeq" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0020" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Scanning Sequence" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="sequenceVariant">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0021): Sequence Variant</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Sequence Variant" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="seqVar" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0021" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Sequence Variant" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="scanOptions">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0022): Scan Options</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Scan Options" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="scanSeq" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0020" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Scan Options" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="acquisitionType">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0023): MR Acquisition Type</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Acquisition Type" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="acqType" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0023" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:MR Acquisition Type"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="tr">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0080): Repetition Time</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="TR" name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="TR" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0080" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Repetition Time" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="te">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0081): Echo Time</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="TE" name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="TE" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0081" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Echo Time" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="echoTrainLength">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0091): Echo Train Length</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Echo Train Length" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="echoTrainLen" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0091" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Echo Train Length" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="ti">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0082): Inversion Time</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="TI" name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="TI" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0082" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Inversion Time" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="triggerTime">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1060): Trigger Time</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Trigger Time" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="triggerTime" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1060" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Trigger Time" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="sequenceName">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0024): Sequence Name</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Sequence Name" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="seqName" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0024" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Sequence Name" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="angioFlag">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0025): Angio Flag</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Angio Flag" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="angioFlag" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0025" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Angio Flag" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="numAverages">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0083): Number of Averages</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Number of Averages" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="numAvgs" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0083" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Number of Averages"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="frequency">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0084): Imaging Frequency</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Frequency" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="freq" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0084" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Imaging Frequency" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="imagedNucleus">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0085): Imaged Nucleus</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Imaged Nucleus" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="imagedNucleus" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0085" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Imaged Nucleus" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="echoNum">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0086): Echo Number</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Echo Number" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="echoNum" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0086" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Echo Number" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="fieldStrength">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0087): Magnetic Field Strength</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Field Strength" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="fieldStrength" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0087" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Magnetic Field Strength"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="numPhaseEncodingSteps">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0089): Number of Phase Encoding Steps</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Number of Phase Encoding Steps"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="numPhaseEnc" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0089" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Number of Phase Encoding Steps"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="percentSampling">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0093): Percent Sampling</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Percent Sampling" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="percSampling" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0093" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Percent Sampling" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="percentPhaseFOV">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0094): Percent Phase Field of View</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Percent Phase Field of View"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="percPhaseFOV" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0094" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Percent Phase Field of View"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="pixelBandwidth">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,0095): Pixel Bandwidth</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Pixel Bandwidth" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="pixBw" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,0095" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Pixel Bandwidth" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="nominalInterval">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1062): Nominal Interval</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Nominal Interval" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="nomInt" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1062" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Nominal Interval" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="beatRejectionFlag">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1080): Beat Rejection Flag</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Beat Rejection Flag" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="beatRejectFlag" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1080" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Beat Rejection Flag"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="lowRRValue">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1081): Low R-R Value</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Low R-R Value" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="lowRR" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1081" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Low R-R Value" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="highRRValue">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1082): High R-R Value</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="High R-R Value" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="highRR" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1082" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:High R-R Value" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="intervalsAcquired">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1083): Intervals Acquired</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Intervals Acquired" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="intervalsAcq" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1083" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Intervals Acquired"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="intervalsRejected">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1084): Intervals Rejected</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Intervals Rejected" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="intervalsRej" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1084" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Intervals Rejected"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="pvcRejection">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1085): PVC Rejection</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="PVC Rejection" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="pvcRej" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1085" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:PVC Rejection" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="skipBeats">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1086): Skip Beats</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Skip Beats" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="skipBeats" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1086" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Skip Beats" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="heartRate">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1088): Heart Rate</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Heart Rate" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="heartRate" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1088" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Heart Rate" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="cardiacNumImages">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1090): Cardiac Number of Images</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Cardiac Number of Images"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="cardiacNumImgs" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1090" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Cardiac Number of Images"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="triggerWindow">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1094): Trigger Window</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Trigger Window" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="trigWin" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1094" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Trigger Window" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+
+					<xs:element minOccurs="0" name="reconstructionDiameter">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1100): Reconstruction Diameter</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Reconstruction Diameter"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="reconDiam" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1100" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Reconstruction Diameter"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="receiveCoilName">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1250): Receive Coil Name</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Receive Coil Name" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="rcvCoil" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1250" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Receive Coil Name" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="transmitCoilName">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1251): Transmit Coil Name</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Transmit Coil Name" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="trsmtCoil" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1251" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Transmit Coil Name"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="acquisitionMatrix">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1310): Acquisition Matrix</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Acquisition Matrix" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="acqMatrix" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1310" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Acquisition Matrix"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="phaseEncodingDirection">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1312): In-plane Phase Encoding Direction</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="In-plane Phase Encoding Direction"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="phaseEncDir" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1312" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:In-plane Phase Encoding Direction"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="flipAngle">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1314): Flip Angle</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Flip Angle" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="flipAngle" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1314" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Flip Angle" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="SAR">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1316): SAR</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="SAR" name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="SAR" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1316" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:SAR" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="variableFlipAngleFlag">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1315): Variable Flip Angle Flag</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Variable Flip Angle Flag"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="varFlipAng" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1315" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Variable Flip Angle Flag"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="dBdt">
+						<xs:annotation>
+							<xs:documentation>DICOM (0018,1318): dB/dt</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="dB/dt" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="dBdt" name="abbreviation" type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0018,1318" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:dB/dt" name="termPath"
+										type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="temporalPositionIdentifier">
+						<xs:annotation>
+							<xs:documentation>DICOM (0020,0100): Temporal Position Identifier</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Temporal Position Identifier"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="tempPosId" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0020,0100" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Temporal Position Identifier"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="numTemporalPositions">
+						<xs:annotation>
+							<xs:documentation>DICOM (0020,0105): Number of Temporal Positions</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Number of Temporal Positions"
+										name="preferredLabel" type="xs:string"/>
+									<xs:attribute fixed="numTempPos" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0020,0105" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Number of Temporal Positions"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="temporalResolution">
+						<xs:annotation>
+							<xs:documentation>DICOM (0020,0110): Temporal Resolution</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:restriction base="terminologyString_t">
+									<xs:attribute fixed="Temporal Resolution" name="preferredLabel"
+										type="xs:string"/>
+									<xs:attribute fixed="tempRes" name="abbreviation"
+										type="xs:string"/>
+									<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+									<xs:attribute fixed="0020,0110" name="termID" type="xs:string"/>
+									<xs:attribute fixed="MR Image:Temporal Resolution"
+										name="termPath" type="xs:string"/>
+								</xs:restriction>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="param" type="addField_t"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="scanner_t">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="manufacturer">
+				<xs:annotation>
+					<xs:documentation>DICOM (0008,1010): Manufacturer</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Manufacturer" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="manufacturer" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0028,0010" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Manufacturer" name="termPath"
+								type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="institutionName">
+				<xs:annotation>
+					<xs:documentation>DICOM (0008,0080): Institution Name </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Institution Name" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="instName" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0008,0080" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Institution Name" name="termPath"
+								type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="institutionAddress">
+				<xs:annotation>
+					<xs:documentation>DICOM (0008,0081): Institution Address </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Institution Address" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="instAddr" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0008,0081" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Institution Address"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="stationName">
+				<xs:annotation>
+					<xs:documentation>DICOM (0008,1010): Station Name </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Station Name" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="stationName" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0008,1010" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Station Name" name="termPath"
+								type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="institutionalDepartmentName">
+				<xs:annotation>
+					<xs:documentation>DICOM (0008,1040): Institutional Department Name </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Institutional Department Name"
+								name="preferredLabel" type="xs:string"/>
+							<xs:attribute fixed="dept" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0008,1040" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Institutional Department Name"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="modelName">
+				<xs:annotation>
+					<xs:documentation>DICOM (0008,1090): Manufacturer's Model Name </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Model Name" name="preferredLabel" type="xs:string"/>
+							<xs:attribute fixed="model" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0008,1090" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Manufacturer's Model Name"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="serialNumber">
+				<xs:annotation>
+					<xs:documentation>DICOM (0018,1000): Device Serial Number </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Serial Number" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="serialNum" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0018,1000" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Device Serial Number"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="softwareVersions">
+				<xs:annotation>
+					<xs:documentation>DICOM (0018,1020): Software Versions </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Software Versions" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="softVers" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0018,1020" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Software Versions"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="spatialResolution">
+				<xs:annotation>
+					<xs:documentation>DICOM (0018,1050): Spatial Resolution </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Spatial Resolution" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="spatlRes" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0018,1050" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Spatial Resolution"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="dateLastCalibration">
+				<xs:annotation>
+					<xs:documentation>DICOM (0018,1200): Date of Last Calibration </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Date of Last Calibration" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="dateLastCal" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0018,1200" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Date of Last Calibration"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="timeLastCalibration">
+				<xs:annotation>
+					<xs:documentation>DICOM (0018,1201): Time of Last Calibration </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Time of Last Calibration" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="timeLastCal" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0018,1201" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Time of Last Calibration"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="pixelPaddingValue">
+				<xs:annotation>
+					<xs:documentation>DICOM (0028,0120): Pixel Padding Value </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="terminologyString_t">
+							<xs:attribute fixed="Pixel Padding Value" name="preferredLabel"
+								type="xs:string"/>
+							<xs:attribute fixed="pixPadVal" name="abbreviation" type="xs:string"/>
+							<xs:attribute fixed="DICOM" name="nomenclature" type="xs:string"/>
+							<xs:attribute fixed="0028,0120" name="termID" type="xs:string"/>
+							<xs:attribute fixed="General Equipment:Pixel Padding Value"
+								name="termPath" type="xs:string"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="additionalEquipment"
+				type="addField_t"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="annotation"
+				type="textAnnotation_t"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addField_t">
+		<xs:simpleContent>
+			<xs:extension base="terminologyString_t">
+				<xs:attribute name="name" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 	<xs:complexType name="informationResource_t">
 		<xs:complexContent>
 			<xs:extension base="resource_t"/>
