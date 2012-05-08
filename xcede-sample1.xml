@@ -24,6 +24,8 @@
             <xcede2:handedness>right</xcede2:handedness>
         </xcede2:subjectInfo>
     </xcede2:subject>
+    
+<!-- NOTE: This example skips levels of XCEDE that are not needed to orient a dataset to a SUBJECT and PROJECT (i.e., VISIT, STUDY, EPISODE) -->
 
 <!-- ACQUISITION - provides information about the collection of a particular type of data -->
     <xcede2:acquisition ID="mprage_anonymized" subjectID="AnnArbor_sub04111" projectID="fcon_1000" type="niq:structural_mri" >
