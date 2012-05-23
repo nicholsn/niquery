@@ -51,7 +51,7 @@
         <xcede2:compression>gz</xcede2:compression>
     </xcede2:resource>
 
-    <xcede2:resource xsi:type="xcede2:nifti_t" ID="func_rest_nifti" dataResourceID="AnnArbor_sub04111_func_rest.nii.gz" acquisitionID="rest_func" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
+    <xcede2:resource xsi:type="xcede2:nifti_t" ID="func_rest_nifti" dataResourceID="AnnArbor_sub04111_func_rest.nii.gz" acquisitionID="func_rest" subjectID="AnnArbor_sub04111" projectID="fcon_1000" format="NIfTI" level="acquisition">
         <xcede2:uri offset="0" size="64860721">http://www.nitrc.org/ir/data/experiments/xnat_E00001/scans/AnnArbor_sub04111_func_rest.nii.gz/resources/11914/files/scan_rest.nii.gz</xcede2:uri>
         <xcede2:elementType>int16</xcede2:elementType>
         <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
