@@ -15,6 +15,12 @@ class Session(object):
     qiQueryURL = "http://purl.org/sig/Query"
     qiTemplateQueryURL = "http://purl.org/sig/TemplateQuery"
 
+    def get_query_url(self):
+        return self.qiQueryURL
+
+    def get_template_query_url(self):
+        return self.qiTemplateQueryURL
+
     def execute_query(self, qid):
         payload = {'qid':qid}
         r = requests.get(self.qiQueryURL, params=payload)

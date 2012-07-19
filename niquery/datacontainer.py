@@ -51,10 +51,10 @@ class DataContainer(object):
         self.resource = resource
         self.uri = uri
 
-        config = ConfigParser.RawConfigParser()
-        config.read('bdt_setup.cfg')
+        #config = ConfigParser.RawConfigParser()
+        #config.read('bdt_setup.cfg')
 
-        self.file_path_base = config.get('FileMapping', 'file_path_base')
-        self.file_uri_base = config.get('FileMapping', 'file_uri_base')
+        #self.file_path_base = config.get('FileMapping', 'file_path_base')
+        #self.file_uri_base = config.get('FileMapping', 'file_uri_base')
         
     
