@@ -1,2 +1,15 @@
 niquery
 =======
+NiQuery is an effort to specify and demonstrate an application programming interface (API) that can support agile exploration of distributed neuroimaging data sources while allowing for heterogeneous and evolving data management systems, ontologies, image data formats, image processing tools, and standard anatomical spaces.
+
+The API is a thin wrapper over a stateless protocol centered around a 'session'. Conceptually, the protocol consists of a collection of RPC calls to a remote server. The server maps the objects specified in the RPC calls to the database wrapper layer that the individual server is using to provide access to its database. For example, a database wrapper will map the objects and semantics of XNAT or a local filesystem into the protocol. The protocol itself consists of three basic objects:
+
+Session – the session object is referenced by every RPC call. Think of it as the 'connection' to the server. All authentication is supplied by this object. The other objects all require a session object be used as their context. This object provides the initial view into the database itself. It provides the basic query and listing interfaces that allow an application to find the other objects available on a specific server.
+
+Current thinking is that this object has a level of persistence. That is an application creates an instance of this object when it first authenticates to the server. The lifecycle of this object can be terminated explicitly by the application, but it may extend beyond the process lifecycle of the application. This enables the Unix-centric form of scripting, where multiple applications operate on the same session. The server configuration determines when un-closed sessions should be terminated.
+
+Data – the data object refers to an entity in the database that conforms to the 'image' data model. This is often acquired imagery, but this could also be any other piece of computationally orientated data, either acquired or computed. These objects provide a mechanism to return pixel data to an application. They wrapper a conceptual sequence of 0-3D arrays of typed data values.
+
+Workflow – the workflow object provides a method through which a server provides a computational service, e.g. a wrappering of common command line tools, perhaps implemented for execution on a local or remote cluster of some type.
+
+Objects are implemented in the application native language (C++/Python/Java/etc). They make use of GUID values to provide proxy tokens for the objects in the server. The objects themselves provide the glue to the physical TCP/IP protocol which implements the RPC calls.
