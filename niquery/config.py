@@ -9,7 +9,7 @@ class Config(object):
     Example:
 
     >>> from niquery.config import Config
-    >>> from niquery.service import NIQ
+    >>> from niquery.niq import NIQ
     >>> config = Config()
     >>> NIQ(config)
 

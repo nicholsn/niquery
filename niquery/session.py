@@ -9,11 +9,30 @@ from datacontainer import DataContainer
 
 class Session(object):
     """
-    classdocs
+    Session is really more of a query service in this context that issues "datacontainer" URIs
+
+    similarly, should the datacontainer object issue imageservice URIs?
+
+    and image service issue workflowservice URIs?
     """
     # http://purl.org/sig/TemplateQuery?qid=132&args=http://purl.org/sig/Query?qid=159,StudyDesign
     qiQueryURL = "http://purl.org/sig/Query"
     qiTemplateQueryURL = "http://purl.org/sig/TemplateQuery"
+
+    def __init__(self, daemon):
+        '''
+        Constructor
+        '''
+
+        self.daemon = daemon
+
+
+    #http://purl.org/sig/qi/Query?qid=284
+    #session = Session()
+    #results = session.execute_query(284)
+    #print results
+    #formatted_results = session.format_query_results(results)
+    #print results
 
     def get_query_url(self):
         return self.qiQueryURL
@@ -105,18 +124,3 @@ class Session(object):
             results.append(dc_uri)
 
         return results
-
-    def __init__(self, daemon):
-        '''
-        Constructor
-        '''
-
-        self.daemon = daemon
-
-
-        #http://purl.org/sig/qi/Query?qid=284
-        #session = Session()
-        #results = session.execute_query(284)
-        #print results
-        #formatted_results = session.format_query_results(results)
-        #print results
