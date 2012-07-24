@@ -44,7 +44,7 @@ def main():
     # import the default configuration
     config = Config()
     # set HMAC_KEY for security
-    Pyro4.config.HMAC_KEY = 'BF7FFE77BFABDB26B35CABC5528EC' #config.HMAC_KEY
+    Pyro4.config.HMAC_KEY = config.HMAC_KEY
     # bind a daemon to the host server
     daemon = Pyro4.Daemon(host=config.HOST,port=config.PORT)
     # locate the name server
