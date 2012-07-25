@@ -64,21 +64,25 @@ class ImageService(object):
         returns a numpy array of a loaded image
         """
         data = self.image.get_data()
-        return np.array(data)
+        return np.asarray(data)
 
-    def get_slice(self,axis, slice):
-        global slab
-        data = np.array(self.image.get_data())
-        slab = np.empty(data.shape,data.dtype)
-        print axis
-        if axis is axis:
-            slab = np.squeeze(data[slice,:,:])
-            print True
-        elif axis is 'coronal':
-            slab = np.squeeze(data[:,slice,:])
-        elif axis is 'axial':
-            slab = np.squeeze(data[:,:,slice])
-        return slab
+    def get_slice(self,axis, slice, volume=1):
+        """
+        returns a 2D slice from a 3D volume
+        """
+        if len(self.image.get_shape()) > 3:
+            return "The loaded data has more than 3 dimensions. Please use the get_4d_slice method"
+        else:
+            data = np.asarray(self.image.get_data())
+            slab = np.empty(data.shape,data.dtype)
+            if axis == 'coronal':
+                slab = np.squeeze(data[slice,:,:])
+            elif axis == 'axial':
+                slab = np.squeeze(data[:,slice,:])
+            elif axis == 'sagital':
+                slab = np.squeeze(data[:,:,slice])
+            return slab
+
 
 def main():
     imageservice=ImageService()
