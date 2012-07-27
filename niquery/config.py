@@ -32,3 +32,4 @@ class Config(object):
         self.PLUGINS = XnatFileMapper
 
 # base class for "FileMapping" extended by sever specific
+#git test
