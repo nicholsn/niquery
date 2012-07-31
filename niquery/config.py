@@ -2,7 +2,9 @@ __author__ = 'nolan'
 
 # this will be used as the main configuration for a service
 
-from .plugins.filemapper import XnatFileMapper
+
+
+from plugins.filemapper import XnatFileMapper
 
 class Config(object):
     """
@@ -17,7 +19,7 @@ class Config(object):
 
     """
 
-    def __init__(self,host='localhost',port=9999):
+    def __init__(self,host='cranium.biostr.washington.edu',port=9999):
         self.HOST = host
         self.PORT = port
         self.NS_HOST = 'www.niquery.org'
@@ -29,7 +31,11 @@ class Config(object):
         # meant to be xml description of services, uri, generated?
         self.SERVICES = "<niq>test niq</niq>"
 
-        self.PLUGINS = XnatFileMapper
+        #self.PLUGINS = XnatFileMapper
+        
+        self.FILE_URI_BASE = 'http://cni.stanford.edu/bobd/xcede/'
+        self.FILE_PATH_BASE = '/Users/detwiler/eclipse/workspace/SIG/Python/NIQueryService/data/'
 
+    def get_host(self):
+        return self.NS_HOST
 # base class for "FileMapping" extended by sever specific
-#git test

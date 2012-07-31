@@ -4,8 +4,9 @@ Created on May 21, 2012
 @author: detwiler
 """
 
-#import ConfigParser
+import ConfigParser
 import nibabel as nib
+from config import Config
 
 class DataContainer(object):
     """
@@ -15,7 +16,7 @@ class DataContainer(object):
     # get_nibabl_object
     # get_nibabel_header
     # other metadata methods to consider
-    def __init__(self, project, subject, acquisition, resource, uri):
+    def __init__(self, config, project, subject, acquisition, resource, uri):
         """
         Constructor
         """
@@ -25,20 +26,21 @@ class DataContainer(object):
         self.resource = resource
         self.uri = uri
 
-        #config = ConfigParser.RawConfigParser()
-        #config.read('bdt_setup.cfg')
-
-        #self.file_path_base = config.get('FileMapping', 'file_path_base')
-        #self.file_uri_base = config.get('FileMapping', 'file_uri_base')
-
-    #def get_data(self):
+        self.file_path_base = config.FILE_PATH_BASE
+        self.file_uri_base = config.FILE_URI_BASE
+        
         #print self.uri
-        #file_path = self.uri.replace(self.file_uri_base,self.file_path_base)
+        file_path = self.uri.replace(self.file_uri_base,self.file_path_base)
         #print file_path
-        #img = nib.load(file_path)
-        #data = img.get_data()
-        #return data
+        self.img = nib.load(file_path)
 
+    def get_data(self):
+        data = self.img.get_data()
+        return data
+    
+    def get_img(self):
+        return self.img
+ 
     def get_uri(self):
         return self.uri
 
