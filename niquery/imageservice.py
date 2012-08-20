@@ -1,7 +1,7 @@
 __author__ = 'nolan'
 import Pyro4
-import nibabel as nib
 import numpy as np
+import nibabel as nib
 from utils import Inspector
 
 class ImageService(object):

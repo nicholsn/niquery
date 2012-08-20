@@ -39,7 +39,7 @@ def main():
     """
 
     """
-    from niquery.config import Config
+    from config import Config
 
     # import the default configuration
     config = Config()
@@ -58,5 +58,6 @@ def main():
     print "Ready."
     daemon.requestLoop()
 
+import sys
 if __name__=="__main__":
-    main()
+    sys.exit(main())

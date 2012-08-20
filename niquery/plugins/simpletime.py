@@ -12,6 +12,13 @@ class SimpleTime(WorkflowProvider):
     '''
     classdocs
     '''
+    
+    display_text = "Input: x,y,z coordinate :: Output: array of x,y,z for each t in image"
+    description = "<workflow><comment>Input: x,y,z coordinate :: Output: array of x,y,z for each t in image</description></comment>"
+    
+    def execute(self,**kwargs):
+        return self.get_voxel_time_series(**kwargs)
+    
     def get_voxel_time_series(self, dc_uri, x, y, z):
         config = Config()
 

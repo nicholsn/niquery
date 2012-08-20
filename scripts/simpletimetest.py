@@ -3,8 +3,9 @@ Created on Jul 27, 2012
 
 @author: detwiler
 '''
+from niquery.plugins import *
 from niquery.datacontainer import DataContainer
-from niquery.plugins.simpletime import SimpleTime
+#from niquery.base.plugin import WorkflowProvider
 from niquery.config import Config
 import Pyro4
 import thread
@@ -25,8 +26,9 @@ def main():
 
     """
     config = Config()
+    #map(__import__, config.WORKFLOW_PLUGIN_MODULES)
     dc = DataContainer(config,'project', 'subject', 'acquisition', 'resource', '/Users/detwiler/eclipse/workspace/SIG/Python/NIQueryService/data/20120308_1998_s001_func_rest.nii.gz')
-    st = SimpleTime()
+    #st = SimpleTime()
     
     thread.start_new_thread(launch_server_daemon,())
     
@@ -47,7 +49,14 @@ def main():
     #print dc2.get_resource_info()
     #print dc2.get_data().shape[3]
     
-    print st.get_voxel_time_series(uri, 12, 12, 12)
+    print "workflow providers = "+str([(x,x().get_display_text()) for x in dc.get_workflow_providers()])
+    workflow_providers =  dc.get_workflow_providers()
+    for workflow in workflow_providers:
+        print workflow().execute(dc_uri=uri,x=12,y=12,z=12)
+#        if workflow == niquery.plugins.simpletime.SimpleTime:
+#            st = workflow()
+    
+    #print st.get_voxel_time_series(uri, 12, 12, 12)
     
 
 if __name__ == '__main__':

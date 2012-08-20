@@ -21,17 +21,29 @@ class WorkflowProvider:
 
     Plugins implementing this reference should provide the following attributes:
 
-    ========  ========================================================
-    title     The text to be displayed, describing the action
-
-    url       The URL to the view where the action will be carried out
-
-    selected  Boolean indicating whether the action is the one
-              currently being performed
-    ========  ========================================================
+    =============  ========================================================
+    display_text    provides a human readable description of workflow
+    
+    description     provides a formal (machine-pocessable) description
+    =============  ========================================================
     """
     __metaclass__ = PluginMount
-
+    
+    def execute(self,**kwargs):
+        raise NotImplementedError( "WorkflowProviders must implement this method" )
+    
+    def get_display_text(self):
+        if hasattr(self,'display_text'):
+            return self.display_text
+        else:
+            return 'no display text provided'
+        
+    def get_description(self):
+        if hasattr(self,'description'):
+            return self.description
+        else:
+            return 'no description provided'
+        
 
 class FileMapperProvider:
     """

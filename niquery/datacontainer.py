@@ -4,9 +4,8 @@ Created on May 21, 2012
 @author: detwiler
 """
 
-import ConfigParser
 import nibabel as nib
-from config import Config
+from .base.plugin import WorkflowProvider
 
 class DataContainer(object):
     """
@@ -16,6 +15,9 @@ class DataContainer(object):
     # get_nibabl_object
     # get_nibabel_header
     # other metadata methods to consider
+    
+    workflow_providers = WorkflowProvider.plugins #@UndefinedVariable
+    
     def __init__(self, config, project, subject, acquisition, resource, uri):
         """
         Constructor
@@ -56,4 +58,6 @@ class DataContainer(object):
     def get_project_info(self):
         return self.project
         
+    def get_workflow_providers(self):
+        return self.workflow_providers
     
