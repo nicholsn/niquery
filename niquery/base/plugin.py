@@ -32,17 +32,19 @@ class WorkflowProvider:
     def execute(self,**kwargs):
         raise NotImplementedError( "WorkflowProviders must implement this method" )
     
-    def get_display_text(self):
-        if hasattr(self,'display_text'):
-            return self.display_text
+    @classmethod
+    def get_display_text(cls):
+        if hasattr(cls,'display_text'):
+            return cls.display_text
         else:
             return 'no display text provided'
-        
-    def get_description(self):
-        if hasattr(self,'description'):
-            return self.description
+    
+    @classmethod
+    def get_description(cls):
+        if hasattr(cls,'description'):
+            return cls.description
         else:
-            return 'no description provided'
+            return {}
         
 
 class FileMapperProvider:
