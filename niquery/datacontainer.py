@@ -5,6 +5,7 @@ Created on May 21, 2012
 """
 
 import nibabel as nib
+from config import Config
 from .base.plugin import WorkflowProvider
 
 class DataContainer(object):
@@ -14,11 +15,9 @@ class DataContainer(object):
     # other image methods to consider
     # get_nibabl_object
     # get_nibabel_header
-    # other metadata methods to consider
+    # other metadata methods to consider 
     
-    workflow_providers = WorkflowProvider.plugins #@UndefinedVariable
-    
-    def __init__(self, config, project, subject, acquisition, resource, uri):
+    def __init__(self, project, subject, acquisition, resource, uri):
         """
         Constructor
         """
@@ -27,7 +26,9 @@ class DataContainer(object):
         self.acquisition = acquisition
         self.resource = resource
         self.uri = uri
+        self.workflow_providers = WorkflowProvider.plugins #@UndefinedVariable
 
+        config = Config()
         self.file_path_base = config.FILE_PATH_BASE
         self.file_uri_base = config.FILE_URI_BASE
         
@@ -57,7 +58,10 @@ class DataContainer(object):
 
     def get_project_info(self):
         return self.project
-        
+    
     def get_workflow_providers(self):
         return self.workflow_providers
+        
+    def get_workflow_provider_descriptions(self):
+        return [x.get_description() for x in self.workflow_providers]
     

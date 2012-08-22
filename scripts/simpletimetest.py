@@ -25,9 +25,9 @@ def main():
     """
 
     """
-    config = Config()
+    #config = Config()
     #map(__import__, config.WORKFLOW_PLUGIN_MODULES)
-    dc = DataContainer(config,'project', 'subject', 'acquisition', 'resource', '/Users/detwiler/eclipse/workspace/SIG/Python/NIQueryService/data/20120308_1998_s001_func_rest.nii.gz')
+    dc = DataContainer('project', 'subject', 'acquisition', 'resource', '/Users/detwiler/eclipse/workspace/SIG/Python/NIQueryService/data/20120308_1998_s001_func_rest.nii.gz')
     #st = SimpleTime()
     
     thread.start_new_thread(launch_server_daemon,())
@@ -49,10 +49,19 @@ def main():
     #print dc2.get_resource_info()
     #print dc2.get_data().shape[3]
     
-    print "workflow providers = "+str([(x,x().get_display_text()) for x in dc.get_workflow_providers()])
+    print "workflow providers = "+str([(p,p.get_display_text()) for p in dc.get_workflow_providers()])
     workflow_providers =  dc.get_workflow_providers()
     for workflow in workflow_providers:
-        print workflow().execute(dc_uri=uri,x=12,y=12,z=12)
+        desc = workflow.get_description()
+        kwargs = {'dc_uri':uri}
+        if 'args' in desc:
+            for arg in desc['args']:
+                if not (arg['name'] in kwargs):
+                    value = raw_input("Enter value of "+arg['name']+": ")
+                    kwargs[arg['name']] = value
+
+
+        print workflow().execute(**kwargs)#(dc_uri=uri,x=12,y=12,z=12)
 #        if workflow == niquery.plugins.simpletime.SimpleTime:
 #            st = workflow()
     

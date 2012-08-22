@@ -7,10 +7,11 @@ __author__ = 'detwiler'
 
 import Pyro4
 from session import Session
+from config import Config
 
 class NIQ(object):
 
-    def __init__(self, config, daemon):
+    def __init__(self, daemon):
         """
         NIQ is the main service providing class that hands out sessions to clients and publicises the services available
         at a given location.
@@ -19,6 +20,7 @@ class NIQ(object):
         niquery service
         """
 
+        config = Config()
         self.url = config.HOST
         self.metadata_url = config.METADATA_URL
         self.services = config.SERVICES
