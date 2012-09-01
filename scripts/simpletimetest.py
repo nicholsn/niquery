@@ -39,7 +39,7 @@ def main():
     # wait for server to start
     while True:
         time.sleep(1)
-        if(daemon!=None):
+        if daemon is None:
             break
 
     uri = daemon.register(dc)
