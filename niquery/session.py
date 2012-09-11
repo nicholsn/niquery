@@ -6,6 +6,7 @@ Created on May 4, 2012
 import requests
 import xml.etree.ElementTree as etree
 from datacontainer import DataContainer
+from niquery.plugins import *
 
 class Session(object):
     """
@@ -119,7 +120,7 @@ class Session(object):
                           'info' : resource_info_d}
 
             # create new data container object for this resource and add to results
-            data_container = DataContainer(project_d, subject_d, acquisition_d, resource_d, resource_uri)
+            data_container = DataContainer(self.daemon,project_d, subject_d, acquisition_d, resource_d, resource_uri)
             dc_uri = self.daemon.register(data_container)
             results.append(dc_uri)
 
