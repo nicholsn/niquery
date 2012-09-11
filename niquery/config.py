@@ -20,7 +20,7 @@ class Config(object):
 
     """
 
-    def __init__(self,host='cranium.biostr.washington.edu',port=9999):
+    def __init__(self,host='localhost',port=9999):
         self.HOST = host
         self.PORT = port
         self.NS_HOST = 'localhost'#'www.niquery.org'
