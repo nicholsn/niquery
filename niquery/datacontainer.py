@@ -88,7 +88,7 @@ class DataContainer(object):
         return [x.get_description() for x in WorkflowProvider.plugins.values()] #@UndefinedVariable
     
     def get_workflow_description(self, classname):
-        if(classname in WorkflowProvider.plugins): #@UndefinedVariable
+        if classname in WorkflowProvider.plugins: #@UndefinedVariable
             return WorkflowProvider.plugins[classname].get_description()
         else:
             return None

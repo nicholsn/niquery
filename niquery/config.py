@@ -35,7 +35,7 @@ class Config(object):
         #self.PLUGINS = XnatFileMapper
         
         self.FILE_URI_BASE = 'http://cni.stanford.edu/bobd/xcede/'
-        self.FILE_PATH_BASE = '/Users/detwiler/eclipse/workspace/SIG/Python/NIQueryService/data/'
+        self.FILE_PATH_BASE = '/Users/nolan/PycharmProjects/SNI/NIQueryService/data/'
 
         self.WORKFLOW_PLUGIN_MODULES = ['niquery.plugins.simpletime','niquery.plugins.workflow']
         #self.PLUGIN_DIR = '/Users/detwiler/eclipse/workspace/SIG/Python/NIQueryRepository/niquery/niquery/plugins'

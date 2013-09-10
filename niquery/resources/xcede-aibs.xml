@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xcede2:XCEDE xmlns:xh11d="http://www.w3.org/1999/xhtml/datatypes/"
+ xmlns:xcede2="http://www.xcede.org/xcede-2"
+ xmlns:niq="http://www.niquery.org"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.xcede.org/xcede-2 https://raw.github.com/niquery/niquery/master/xcede-2.1-niq.xsd" version="2.1">
+
+<!-- PROJECT - provides header level information about subjects and the projects they belong to -->
+    <xcede2:project ID="HumanMA">
+        <xcede2:projectInfo>
+            <xcede2:subjectGroupList>
+                <xcede2:subjectGroup>
+                    <xcede2:subjectID>H0351.1009</xcede2:subjectID>
+                    <xcede2:subjectID>H0351.2001</xcede2:subjectID>
+                </xcede2:subjectGroup>
+            </xcede2:subjectGroupList>
+        </xcede2:projectInfo>
+    </xcede2:project>
+
+<!-- SUBJECT - provides demographic information about a subject that is considered static. Note that dynamic information (e.g., age or even gender) may be better captured as an acquisition of demographic information -->
+    <xcede2:subject ID="H0351.1009">
+        <xcede2:subjectInfo>
+            <xcede2:sex>male</xcede2:sex>
+            <xcede2:age>57</xcede2:age>
+            <xcede2:handedness>unknown</xcede2:handedness>
+        </xcede2:subjectInfo>
+    </xcede2:subject>
+    
+    <xcede2:subject ID="H0351.2001">
+        <xcede2:subjectInfo>
+            <xcede2:sex>male</xcede2:sex>
+            <xcede2:age>24</xcede2:age>
+            <xcede2:handedness>unknown</xcede2:handedness>
+        </xcede2:subjectInfo>
+    </xcede2:subject>
+    
+<!-- NOTE: This example skips levels of XCEDE that are not needed to orient a dataset to a SUBJECT and PROJECT (i.e., VISIT, STUDY, EPISODE) -->
+
+<!-- ACQUISITION - provides information about the collection of a particular type of data -->
+    <xcede2:acquisition ID="T1" subjectID="H0351.1009" projectID="HumanMA" type="niq:structural_mri" >
+        <xcede2:acquisitionInfo xsi:type="xcede2:mrAcquisitionInfo_t">
+            <xcede2:fieldStrength>3.0</xcede2:fieldStrength>
+        </xcede2:acquisitionInfo>
+        <xcede2:dataResourceRef ID="H0351.1009_T1" URI="http://api.brain-map.org/api/v2/well_known_file_download/7968"/>
+    </xcede2:acquisition>
+    
+    <xcede2:acquisition ID="T1" subjectID="H0351.2001" projectID="HumanMA" type="niq:structural_mri" >
+        <xcede2:acquisitionInfo xsi:type="xcede2:mrAcquisitionInfo_t">
+            <xcede2:fieldStrength>3.0</xcede2:fieldStrength>
+        </xcede2:acquisitionInfo>
+        <xcede2:dataResourceRef ID="H0351.2001_T1" URI="http://human.brain-map.org/api/v2/well_known_file_download/4110"/>
+    </xcede2:acquisition>
+
+<!-- RESOURCE - provides information about data that is not natively represented in XML (e.g., a NIfTI file located at a given URI) -->
+    <xcede2:resource xsi:type="xcede2:nifti_t" ID="H0351.1009_T1" dataResourceID="H0351.1009_T1" acquisitionID="T1" subjectID="H0351.1009" projectID="HumanMA" format="NIfTI" level="acquisition">
+        <xcede2:uri offset="0" size="3218881">http://api.brain-map.org/api/v2/well_known_file_download/7968</xcede2:uri>
+        <xcede2:elementType>int16</xcede2:elementType>
+        <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
+        <xcede2:compression>gz</xcede2:compression>
+    </xcede2:resource>
+    
+    <xcede2:resource xsi:type="xcede2:nifti_t" ID="H0351.2001_T1" dataResourceID="H0351.2001_T1" acquisitionID="T1" subjectID="H0351.2001" projectID="HumanMA" format="NIfTI" level="acquisition">
+        <xcede2:uri offset="0" size="2353511">http://human.brain-map.org/api/v2/well_known_file_download/4110</xcede2:uri>
+        <xcede2:elementType>int16</xcede2:elementType>
+        <xcede2:byteOrder>lsbfirst</xcede2:byteOrder>
+        <xcede2:compression>gz</xcede2:compression>
+    </xcede2:resource>
+    
+</xcede2:XCEDE>

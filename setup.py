@@ -11,5 +11,5 @@ setup(
     license='Apache 2.0',
     description='Framework to query neuroimaging databases.',
     long_description=open('README').read(),
-    install_requires=["Pyro4", "requests", "numpy", "nibabel"],
+    install_requires=["Pyro4", "requests", "numpy", "nibabel", 'web'],
 )

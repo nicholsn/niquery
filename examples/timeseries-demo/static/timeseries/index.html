@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<!--
+/*
+*
+*                  xxxxxxx      xxxxxxx
+*                   x:::::x    x:::::x
+*                    x:::::x  x:::::x
+*                     x:::::xx:::::x
+*                      x::::::::::x
+*                       x::::::::x
+*                       x::::::::x
+*                      x::::::::::x
+*                     x:::::xx:::::x
+*                    x:::::x  x:::::x
+*                   x:::::x    x:::::x
+*              THE xxxxxxx      xxxxxxx TOOLKIT
+*
+*                  http://www.goXTK.com
+*
+* Copyright (c) 2012 The X Toolkit Developers <dev@goXTK.com>
+*
+*    The X Toolkit (XTK) is licensed under the MIT License:
+*      http://www.opensource.org/licenses/mit-license.php
+*
+* Based on LESSON 13 - I want 2D!
+*/
+-->
+
+<html>
+	<head>
+		<title>NIQuery Time Series Demo</title>
+		<!--  "http://code.jquery.com/jquery-1.8.1.js" -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.js"></script>
+		<!-- <script type="text/javascript" src="http://get.goXTK.com/xtk.js"></script>  -->
+		<script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+		<script type="text/javascript" src="http://get.goXTK.com/xtk_xdat.gui.js"></script>
+		<script type="text/javascript" src="request.js"></script>
+		
+		<script type="text/javascript" src="demo.js"></script>
+		<link rel="stylesheet" type="text/css" href="demo.css">
+
+		<link rel="stylesheet" type="text/css" href="http://code.shutterstock.com/rickshaw/rickshaw.min.css">
+		<script src="http://code.shutterstock.com/rickshaw/vendor/d3.min.js"></script>
+		<script src="http://code.shutterstock.com/rickshaw/vendor/d3.layout.min.js"></script>
+		<script src="http://code.shutterstock.com/rickshaw/rickshaw.min.js"></script>
+	</head>
+
+	<body onload="display_slices()">
+		<!-- the container for the renderers -->
+
+		<form name="pointform" method="post" style="width: 100%; height: 100%">
+
+			<div id="filler" style="background-color: #FFF; width: 80%; height: 10%">
+				NIQuery Time Series Demo
+			</div>
+			<div id="chart" style="background-color: #FFF; color: #000; width: 80%; height: 35%; margin-bottom: 2px; float: left"></div>
+
+			<div style="background-color: #000; color: #FFF; width: 75%; height: 10%; float: right;">
+				<div style="color: #FFF; width: 25%; height: 10%; float: right">
+					x:
+					<input type="text" name="form_x" size="4" value="0"/>
+					<br>
+					y:
+					<input type="text" name="form_y" size="4" value="0"/>
+					<br>
+					z:
+					<input type="text" name="form_z" size="4" value="0"/>
+
+			 		<button type="button" onclick="run_rickshaw()">Update Chart</button> 
+				</div>
+			</div>
+
+			<div id="container" style="background-color: #000; width: 100%; height: 55%;">
+
+				<div id="sliceX"  style="border-top: 2px solid yellow; background-color: #000; width: 32%; height: 55%; float: left;"></div>
+
+				<div id="sliceY" style="border-top: 2px solid red;background-color: #000; width: 32%; height: 55%; float: left;"></div>
+
+				<div id="sliceZ" style="border-top: 2px solid green; background-color: #000; width: 32%; height: 55%; float: left;"></div>
+			</div>
+		</form>
+	</body>
+	<script>
+		//jQuery.noConflict();
+		
+		var run_rickshaw = function()
+		{
+			document.querySelector("#chart").innerHTML = "";
+			var encoded_guids = Request.parameters().dc_guids;
+			//var encoded_guids = request.getParameter("dc_guids");
+			var guids_string = decodeURIComponent(encoded_guids);
+			var guids = jQuery.parseJSON(guids_string);
+			
+			var formx = document.pointform.form_x.value;
+			var formy = document.pointform.form_y.value;
+			var formz = document.pointform.form_z.value;
+			
+			//if(formx=="0"&&formy=="0"&&formz=="0")
+			//	return;
+
+			var x = formx;//Math.round(volume.indexX);
+			var y = formy;
+			var z = formz;
+			
+			simple_time_rickshaw(guids,x,y,z);
+			
+			//display_slices();
+		};
+		run_rickshaw();
+		
+		function wait()
+		{
+			
+		}
+
+	
+	    function simple_time_rickshaw(guids,x,y,z)
+	    {
+	    	var args = {};
+	    	args['form_type'] = 'simple_time';
+	        args['dc_guids'] = JSON.stringify(guids);
+	        args['x'] = x;
+	        args['y'] = y;
+	        args['z'] = z;
+	        jQuery.ajax({
+	            type: "POST",
+	            url: "/",
+	            data: args,
+	            dataType: 'json',
+	            success: function(data) {
+	            	//jQuery('#queryresults').html(data).hide().fadeIn(1500);
+	            	//return data;
+	            	//render_graph(jQuery.parseJSON(data));
+	            	render_graph(data);
+	            },
+	            });
+	        //return new_series;
+	    }
+	    
+	    function render_graph(data)
+	    {
+	    	Rickshaw.Series.zeroFill(data);
+	    	var graph = new Rickshaw.Graph({
+				element : document.querySelector("#chart"),
+				series : data,
+				renderer : 'line',
+				min : 'auto',
+			});
+
+			var time = new Rickshaw.Fixtures.Time();
+			var seconds = time.unit('seconds');
+
+			var xAxis = new Rickshaw.Graph.Axis.Time({
+				graph : graph,
+				timeUnit : seconds
+			});
+
+			var yAxis = new Rickshaw.Graph.Axis.Y({
+				graph : graph
+			});
+			
+			graph.render();
+	    }
+	    
+	    /*
+	    function update_graph()
+	    {
+	    	data = simple_time_rickshaw()
+	    	Rickshaw.Series.zeroFill(data);
+	    	graph.configure({series : data});
+	    	graph.render();
+	    }
+	    */
+    </script>
+
+	<script>
+		function point_it(event) {
+			pos_x = event.offsetX ? (event.offsetX) : event.pageX - document.getElementById("sliceZ").offsetLeft;
+			pos_y = event.offsetY ? (event.offsetY) : event.pageY - document.getElementById("sliceZ").offsetTop;
+			document.getElementById("cross").style.left = (pos_x - 1);
+			document.getElementById("cross").style.top = (pos_y - 15);
+			document.getElementById("cross").style.visibility = "visible";
+			document.pointform.form_x.value = pos_x;
+			document.pointform.form_y.value = pos_y;
+		}
+
+	</script>
+</html>
