@@ -1,1 +1,2 @@
-v0.01, 05-07-2012 -- Initial release.
+v0.0.1, 05-07-2012 -- Initial release.
+v0.0.2, 09-11-2013 -- Major refactoring
