@@ -1,3 +1,10 @@
-niquery
+NIQuery
 =======
 NiQuery is an effort to specify and demonstrate an application programming interface (API) that can support agile exploration of distributed neuroimaging data sources while allowing for heterogeneous and evolving data management systems, ontologies, image data formats, image processing tools, and standard anatomical spaces.
+
+Basic API Specification
+-----------------------
+
+| __HTTP METHODS__ |                 __URI__               |        __Action__      |
+|-----------------------------------------------------------------------------------|
+|      GET         | http://[hostname]/todo/api/v1.0/tasks | Retrieve list of tasks |
