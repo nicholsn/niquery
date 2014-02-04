@@ -1,0 +1,46 @@
+---
+
+- name: Execute the anaconda setup script
+  sudo: False
+  script: files/setupconda.sh
+
+- name: Update conda
+  sudo: False
+  shell: $HOME/anaconda/bin/conda update conda --yes -q 
+
+- name: install pip ipython flask requests dateutil easy_install
+  sudo: False
+  shell: $HOME/anaconda/bin/conda install --yes -q pip ipython flask requests executable=/bin/bash
+
+- name: update distribute
+  sudo: False
+  shell: $HOME/anaconda/bin/easy_install --upgrade distribute
+
+- name: install flask-restful 
+  sudo: False
+  shell: $HOME/anaconda/bin/pip install https://github.com/twilio/flask-restful/archive/master.zip executable=/bin/bash
+
+- name: install rdflib 
+  sudo: False
+  shell: $HOME/anaconda/bin/pip install https://github.com/RDFLib/rdflib/archive/master.zip executable=/bin/bash
+
+- name: install rdflib-jsonld 
+  sudo: False
+  shell: $HOME/anaconda/bin/pip install https://github.com/RDFLib/rdflib-jsonld/archive/master.zip executable=/bin/bash
+
+- name: install pyld 
+  sudo: False
+  shell: $HOME/anaconda/bin/pip install  https://github.com/digitalbazaar/pyld/archive/master.zip executable=/bin/bash
+
+- name: install prov rdf
+  sudo: False
+  shell: $HOME/anaconda/bin/pip install https://github.com/satra/prov/archive/enh/rdf.zip executable=/bin/bash
+
+- name: install gunicorn
+  sudo: False
+  shell: $HOME/anaconda/bin/pip install gunicorn executable=/bin/bash
+
+- name: install supervisor 
+  sudo: False
+  #shell: $HOME/anaconda/bin/pip install https://github.com/Supervisor/supervisor/archive/master.zip executable=/bin/bash
+  shell: $HOME/anaconda/bin/pip install supervisor==3.0b2 --pre executable=/bin/bash

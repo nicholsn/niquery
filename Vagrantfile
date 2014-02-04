@@ -2,15 +2,18 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
+
   config.vm.box = "precise64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
+
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   # Create a forwarded port mapping which allows access to a specific port
@@ -20,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
+
   config.vm.network :private_network, ip: "192.168.100.10"
 
   # Create a public network, which generally matched to bridged network.
@@ -43,7 +47,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :virtualbox do |vb|
 
-  #   # Use VBoxManage to customize the VM. For example to change memory:
       vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       vb.customize ["modifyvm", :id, "--ioapic", "on"]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
@@ -59,4 +62,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.verbose = 'vvv'
       ansible.playbook = "common/ops/vagrant-virtserver.yml"
       ansible.inventory_path = "common/ops/vagrant-hosts"
+
 end

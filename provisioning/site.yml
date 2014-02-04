@@ -1,0 +1,12 @@
+---
+- name: Install Niquery and Nginx
+  hosts: niquery-webserver
+  user: root
+   remote_user: ubuntu
+   sudo: yes
+
+  roles:
+    - common
+    - niquery
+    - nginx
+

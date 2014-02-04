@@ -1,0 +1,7 @@
+---
+
+- name: Update Aptitude
+  action: apt update_cache=yes
+
+- name: Install python-software-properties
+  action: apt pkg=python-software-properties state=present
