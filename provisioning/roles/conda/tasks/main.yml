@@ -1,0 +1,14 @@
+---
+# Install miniconda python distribution
+
+- name: Download miniconda
+  get_url: url=http://repo.continuum.io/miniconda/Miniconda-3.0.0-Linux-x86_64.sh dest=/tmp/miniconda.sh mode=0755
+
+- name: Execute the miniconda setup script
+  shell: /tmp/miniconda.sh creates=$HOME/miniconda executable=/bin/bash
+
+- name: Add miniconda to the PATH
+  shell: echo "export PATH=\$HOME/miniconda/bin:\$PATH" >> $HOME/.bashrc executable=/bin/bash
+
+- name: Update conda to latest version
+  shell: $HOME/miniconda/bin/conda update conda --yes -q executable=/bin/bash

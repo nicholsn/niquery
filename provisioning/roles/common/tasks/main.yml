@@ -1,7 +1,8 @@
 ---
+# Playbook for common role
 
-- name: Update Aptitude
-  action: apt update_cache=yes
+- name: Update aptitude cache
+  apt: upgrade=dist update_cache=yes
 
-- name: Install python-software-properties
-  action: apt pkg=python-software-properties state=present
+- name: Install python-software-properties to support add-apt-reposity
+  apt: pkg=python-software-properties state=present

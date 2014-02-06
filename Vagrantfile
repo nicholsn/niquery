@@ -60,7 +60,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :ansible do |ansible|
 
       ansible.verbose = 'vvv'
-      ansible.playbook = "common/ops/vagrant-virtserver.yml"
-      ansible.inventory_path = "common/ops/vagrant-hosts"
-
+      ansible.playbook = "provisioning/site.yml"
+      ansible.inventory_path = "provisioning/hosts"
+  end
+  
 end

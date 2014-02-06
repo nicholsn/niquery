@@ -1,12 +1,14 @@
 ---
-- name: Install Niquery and Nginx
-  hosts: niquery-webserver
-  user: root
-   remote_user: ubuntu
-   sudo: yes
+# Main Play for NIQuery deployment
+
+- hosts: niquery-webserver
+  remote_user: vagrant
+  sudo: yes
 
   roles:
     - common
-    - niquery
+    - conda
+    - supervisor
     - nginx
+    #- niquery
 
