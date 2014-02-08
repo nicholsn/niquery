@@ -1,0 +1,14 @@
+---
+# Main Play for NIQuery deployment
+
+- hosts: niquery-webserver
+  remote_user: vagrant
+  sudo: yes
+
+  roles:
+    - common
+    - conda
+    - supervisor
+    - nginx
+    - queue
+    - niquery

@@ -12,7 +12,7 @@ class ROOT(Resource):
     
     def get(self):
         
-"""        
+        """        
         dbo = Namespace('http://dbpedia.org/ontology/')
 
         graph = Graph(store='SPARQLStore')
@@ -27,7 +27,7 @@ class ROOT(Resource):
         response = json.loads(result.serialize(format='json-ld'))
 
         return jsonify(response)
-"""
+        """
 
 api.add_resource(ROOT, '/')
 
