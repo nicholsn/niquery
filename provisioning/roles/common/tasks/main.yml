@@ -2,7 +2,11 @@
 # Playbook for common role
 
 - name: Update aptitude cache
-  apt: upgrade=dist update_cache=yes
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Upgrade packages
+  apt: upgrade=dist
+  when: upgrade_packages == "True"
 
 - name: Install python-software-properties to support add-apt-reposity
   apt: pkg=python-software-properties state=present

@@ -1,5 +1,0 @@
----
-# Playbook for niquery role
-
-- name: include supervisor.ini for niquery
-  template: src=supervisor-niquery.ini.j2 dest=/etc/supervisor/niquery.ini

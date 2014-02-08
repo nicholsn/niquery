@@ -5,7 +5,7 @@
   apt_repository: repo=ppa:nginx/stable state=present
 
 - name: Install web server packages
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - nginx
 

@@ -3,7 +3,7 @@
 - Requires Ansible 1.2 or newer
 - Expects Ubuntu 12.04 hosts
 
-These playbooks deploy a simple all-in-one configuration of the Niquery neuroimaging framework and frontend by the Nginx web server. To use, run the playbook from Vagrant, like this:
+These playbooks deploy a simple all-in-one configuration of the NIQuery neuroimaging framework and frontend by the Nginx web server. To use, run the playbook from Vagrant, like this:
 
 	vagrant up
 

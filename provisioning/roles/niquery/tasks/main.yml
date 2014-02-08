@@ -1,7 +1,8 @@
 ---
-# Playbook for niquery role
+# Tasks for niquery role
 
-- name: Install dateutil flask ipython pip requests 
+- name: Install dateutil flask ipython pip requests
+  sudo: False 
   shell: $HOME/miniconda/bin/conda install --yes -q {{ item }} executable=/bin/bash
   with_items:
     - dateutil 
@@ -11,34 +12,37 @@
     - requests 
 
 # Web application configuration
-- name: include supervisor.ini for niquery app
-  template: src=supervisor-niquery.ini.j2 dest=/etc/supervisor/niquery.ini
-  notify: restart supervisord
+
+- name: Copy niquery app into /srv directory
+  shell: /bin/cp -r /vagrant/{{ app_name }} {{ webapps_dir }}/{{ app_name }}
 
 - name: Install gunicorn for deploying niquery behind nginx
-  pip: name=https://github.com/benoitc/gunicorn/archive/master.zip state=present
+  sudo: False
+  pip: name=https://github.com/benoitc/gunicorn/archive/master.zip state=present executable={{ anaconda_home }}/bin/pip
+  
+- name: include supervisor.ini for niquery app
+  template: src=supervisor.ini.j2 dest=/etc/supervisor/niquery.ini
+  notify: restart supervisord
 
 - name: Install flask-restful extension for building a restful api
-  pip: name=https://github.com/twilio/flask-restful/archive/master.zip state=present
+  sudo: False
+  pip: name=https://github.com/twilio/flask-restful/archive/master.zip state=present executable={{ anaconda_home }}/bin/pip
 
-# Task queue libraries
-
-- name: Install celery distributed queue library
-  pip: name=https://github.com/celery/celery/archive/master.zip state=present
-
-- name: Install flower for monitoring celery queues
-  pip: name=https://github.com/mher/flower/archive/master.zip state=present
 
 # Semantic Web libraries
 
 - name: Install rdflib library for managing rdf data
-  pip: name=https://github.com/RDFLib/rdflib/archive/master.zip state=present
+  sudo: False
+  pip: name=https://github.com/RDFLib/rdflib/archive/master.zip state=present executable={{ anaconda_home }}/bin/pip
 
 - name: Install rdflib-jsonld extension for managing json-ld data
-  pip: name=https://github.com/RDFLib/rdflib-jsonld/archive/master.zip state=present
+  sudo: False
+  pip: name=https://github.com/RDFLib/rdflib-jsonld/archive/master.zip state=present executable={{ anaconda_home }}/bin/pip
 
 - name: Install pyld library for converting json-ld
-  pip: name=https://github.com/digitalbazaar/pyld/archive/master.zip state=present
+  sudo: False
+  pip: name=https://github.com/digitalbazaar/pyld/archive/master.zip state=present executable={{ anaconda_home }}/bin/pip
 
 - name: Install prov library branch that supports rdf
-  pip: name=https://github.com/satra/prov/archive/enh/rdf.zip state=present
+  sudo: False
+  pip: name=https://github.com/satra/prov/archive/enh/rdf.zip state=present executable={{ anaconda_home }}/bin/pip

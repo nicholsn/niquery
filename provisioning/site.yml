@@ -10,5 +10,5 @@
     - conda
     - supervisor
     - nginx
-    #- niquery
-
+    - queue
+    - niquery

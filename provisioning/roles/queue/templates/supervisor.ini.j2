@@ -1,0 +1,6 @@
+[program:flower]
+command = {{ anaconda_home }}/bin/celery flower 
+	--broker=redis://guest:guest@localhost:6379/0
+
+autostart=true
+autorestart=true
