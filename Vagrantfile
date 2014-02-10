@@ -15,6 +15,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       container.pull_images "ubuntu"
       #container.run "ubuntu:12.04"
     end
+
+    niq.vm.provision :shell,
+      inline: "/usr/bin/docker build -t niquery/niquery /vagrant"
+    
   end
 
   # Provision virtualbox with niquery (requires ansible)
