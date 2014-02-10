@@ -3,7 +3,7 @@ FROM ubuntu:12.04
 MAINTAINER Nolan Nichols <nolan.nichols@gmail.com>
 
 RUN apt-get update 
-RUN apt-get install -y python-software-properties build-essential git-core1
+RUN apt-get install -y python-software-properties build-essential git-core
 RUN add-apt-repository -y ppa:rquillo/ansible
 RUN apt-get update
 RUN apt-get install -y ansible
