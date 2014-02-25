@@ -1,0 +1,12 @@
+---
+# Playbook for base container
+
+- hosts: base-container
+  remote_user: vagrant
+  sudo: yes
+
+  roles:
+    - common
+    - conda
+    #- supervisor
+    #- nginx
