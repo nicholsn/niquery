@@ -9,6 +9,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     base.vm.box_url = "http://files.vagrantup.com/precise64.box"
     base.vm.network :private_network, ip: "192.168.100.10"
 
+    vagrant_config.vm.provider :virtualbox do |vb|
+
+        #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+        #vb.customize ["modifyvm", :id, "--ioapic", "on"]
+        #vb.customize ["modifyvm", :id, "--memory", "1024"]
+        #vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
+
     base.vm.provision :docker do |container|
       container.pull_images "ubuntu"
     end
