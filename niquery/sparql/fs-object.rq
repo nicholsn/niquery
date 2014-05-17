@@ -1,0 +1,21 @@
+PREFIX cml: <http://www.connectomics.org/cff-2/>
+PREFIX fs: <http://www.incf.org/ns/nidash/fs#>
+PREFIX nidm: <http://www.incf.org/ns/nidash/nidm#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT DISTINCT ?subjectID ?tag  ?vol ?segID  ?annotation ?max ?mean
+FROM <https://gist.githubusercontent.com/nicholsn/54ca7f9e3a8210b31b7e/raw/3ac5e8a7301f3b3280a193413e158b6780a30abc/FreesurferDirStats.ttl>
+WHERE {
+    ?subjectdir a fs:SubjectDirectory ;
+        fs:subjectID ?subjectID ;
+        nidm:tag ?tag ;
+        prov:hadMember ?dirMember .
+    ?statsCollection prov:wasDerivedFrom ?dirMember ;
+        prov:hadMember ?statsEntity .
+    ?statsEntity a prov:Entity ;
+        fs:Volume_mm3 ?vol ; 
+        fs:SegId ?segID ; 
+        nidm:anatomicalAnnotation ?annotation ;
+        fs:normMax ?max ; 
+        fs:normMean ?mean .
+}
