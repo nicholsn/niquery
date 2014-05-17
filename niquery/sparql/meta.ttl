@@ -1,0 +1,36 @@
+# Metadata about niquery sparql queries                                                                      #
+#                                                                                                            #
+# Adding a new query:                                                                                        #
+# 1. Create a resource that identifies the query URL and append a "#this" fragment to be the URI             #
+# 2. Include an rdf:type from "niq:SelectQuery", "niq:ConstructQuery", "niq:DescribeQuery                    #
+# 4. The properties listed in the example below should also be included                                      #
+#                                                                                                            #
+# Example:                                                                                                   #
+# <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/example.rq#this> a niq:TemplateQuery ;  #
+#     dct:title        "Example Select Query" ;                                                              #
+#     dct:description  "This is an example select query description." ;                                      #
+#     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;                                              #
+#     dcat:format      niq:Select ;                                                                          #
+#     dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/example.rq> ;      #
+#     dcat:keyword     "keyword1", "keyword2" ;                                                              #
+#     niq:model        nidm:DatasetDescriptor ;                                                              #
+#     niq:parameters   ("first" "second" "third") ;                                                          #
+#     .                                                                                                      #
+# its turtles all the way down                                                                               #
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix nidm: <http://incf.org/ns/nidash/nidm#> .
+@prefix niq: <http://purl.org/niquery#> .
+
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/meta.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Queries" ;
+    dct:description  "Select all of the queries in meta.ttl and return a table of their attributes." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/meta.rq> ;
+    dcat:keyword     "query", "meta" ;
+    niq:model        niq:QueryMetadata ;
+    .
