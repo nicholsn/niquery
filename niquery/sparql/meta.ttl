@@ -3,7 +3,7 @@
 # Adding a new query:                                                                                        #
 # 1. Create a resource that identifies the query URL and append a "#this" fragment to be the URI             #
 # 2. Include an rdf:type from "niq:SelectQuery", "niq:ConstructQuery", "niq:DescribeQuery                    #
-# 4. The properties listed in the example below should also be included                                      #
+# 3. The properties listed in the example below should also be included                                      #
 #                                                                                                            #
 # Example:                                                                                                   #
 # <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/example.rq#this> a niq:TemplateQuery ;  #
@@ -15,7 +15,8 @@
 #     dcat:keyword     "keyword1", "keyword2" ;                                                              #
 #     niq:model        nidm:DatasetDescriptor ;                                                              #
 #     niq:parameters   ("first" "second" "third") ;                                                          #
-#     .                                                                                                      #
+#     niq:columns      "?title", "?description" .                                                            #
+#                                                                                                            #
 # its turtles all the way down                                                                               #
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -33,4 +34,64 @@
     dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/meta.rq> ;
     dcat:keyword     "query", "meta" ;
     niq:model        niq:QueryMetadata ;
-    .
+    niq:columns      "?title", "?description", "?creator", "?format", "?downloadURL", "?keywords", "?model" .
+
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/projects.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Projects" ;
+    dct:description  "Select all of the projects and return a table of their attributes." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/projects.rq> ;
+    dcat:keyword     "query", "project" ;
+    niq:model        nidm:Project ;
+    niq:columns      "?title", "?description", "?model" .
+
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/studies.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Studies" ;
+    dct:description  "Select all of the studies and return a table of their attributes." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/studies.rq> ;
+    dcat:keyword     "query", "study" ;
+    niq:model        niq:Study ;
+    niq:columns      "?title", "?description", "?model" .
+
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/acquisitions.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Acquisitions" ;
+    dct:description  "Select all of the acquisitions and return a table of their attributes." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/acquisitions.rq> ;
+    dcat:keyword     "query", "acquisition" ;
+    niq:model        niq:Study ;
+    niq:columns      "?title", "?description", "?model" .
+
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/summaries.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Summaries" ;
+    dct:description  "Select all of the summaries and return a table of their attributes." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/summaries.rq> ;
+    dcat:keyword     "query", "summaries", "hcls" ;
+    niq:model        niq:Summary ;
+    niq:columns      "?title", "?description", "?model" .
+    
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/versions.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Versions" ;
+    dct:description  "Select all of the versions and return a table of their attributes." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/versions.rq> ;
+    dcat:keyword     "query", "versions", "hcls" ;
+    niq:model        niq:Version ;
+    niq:columns      "?title", "?description", "?model" .
+    
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/distributions.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Distributions" ;
+    dct:description  "Select all of the distributions and return a table of their attributes." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/distributions.rq> ;
+    dcat:keyword     "query", "distributions", "hcls" ;
+    niq:model        niq:Distribution ;
+    niq:columns      "?title", "?description", "?model" .
