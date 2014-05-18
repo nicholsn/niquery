@@ -1,0 +1,19 @@
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX nidm: <http://incf.org/ns/nidash/nidm#>
+PREFIX niq: <http://purl.org/niquery#>
+
+SELECT ?title ?description ?creator ?format ?downloadURL (GROUP_CONCAT(?keyword;SEPARATOR=";") AS ?keywords) ?model
+WHERE {
+    ?meta a niq:SelectQuery ;
+        dct:title ?title ;
+        dct:description ?description ;
+        dct:creator ?creator ;
+        dcat:format ?format ;
+        dcat:downloadURL ?downloadURL ;
+        dcat:keyword ?keyword ;
+        niq:model ?model .
+    }
