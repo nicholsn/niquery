@@ -3,22 +3,32 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
+  # Provision virtualbox with docker and container
+  config.vm.define "base_config", primary: true do |base|
+    base.vm.box = "precise64"
+    base.vm.box_url = "http://files.vagrantup.com/precise64.box"
+    base.vm.network :private_network, ip: "192.168.100.10"
+
+    base.vm.provision :docker do |container|
+      container.pull_images "ubuntu"
+    end
+
+    #base.vm.provision :shell,
+    #  inline: "/usr/bin/docker build -t nicholsn/base /vagrant/provisioning/roles/common/files"
+
+  end
+
   # Provision virtualbox with niquery using docker containers
-  config.vm.define "niquery_config", primary: true do |niq|
+  config.vm.define "niquery_config" do |niq|
     niq.vm.box = "precise64"
     niq.vm.box_url = "http://files.vagrantup.com/precise64.box"
     niq.vm.network :private_network, ip: "192.168.100.10"
 
     niq.vm.provision :docker do |container|
-      #container.pull_images "nicholsn/niquery"
-      #container.run "nicholsn/niquery"
-      container.pull_images "ubuntu"
-      #container.run "ubuntu:12.04"
+      container.pull_images "nicholsn/niquery"
+      container.run "nicholsn/niquery"
     end
 
-    niq.vm.provision :shell,
-      inline: "/usr/bin/docker build -t niquery/niquery /vagrant"
-    
   end
 
   # Provision virtualbox with niquery (requires ansible)
@@ -74,7 +84,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vagrant_config.vm.provision :ansible do |ansible|
 
       ansible.verbose = 'vvv'
-      ansible.playbook = "provisioning/site.yml"
+      ansible.playbook = "provisioning/base.yml"
       ansible.inventory_path = "provisioning/hosts"
     end
   end
