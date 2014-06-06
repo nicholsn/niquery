@@ -95,3 +95,13 @@
     dcat:keyword     "query", "distributions", "hcls" ;
     niq:model        niq:Distribution ;
     niq:columns      "?title", "?description", "?model" .
+    
+<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/contrasts.rq#this> a niq:SelectQuery ;
+    dct:title        "Select All Contrasts" ;
+    dct:description  "Select all of the Contrasts and return a table of the Contrast and Varcope files." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/contrasts.rq> ;
+    dcat:keyword     "query", "contrast", "results" ;
+    niq:model        niq:Results ;
+    niq:columns      "?cfile", "?efile" .
