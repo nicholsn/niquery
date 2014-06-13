@@ -1,10 +1,9 @@
 NIQuery
 =======
-NiQuery is an effort to specify and demonstrate an application programming interface (API) that can support agile exploration of distributed neuroimaging data sources while allowing for heterogeneous and evolving data management systems, ontologies, image data formats, image processing tools, and standard anatomical spaces.
+NiQuery is an effort to specify and demonstrate an application programming interface (API) that provides:
 
-Basic API Specification
------------------------
+- a repository of SPARQL queries for NIDM 
+- a python library to ease the use of NIDM SPARQL queries
+- an restful web api to execute queries
+- queue management for executing nipype workflows
 
-| __HTTP METHODS__ |                 __URI__               |        __Action__      |
-|-----------------------------------------------------------------------------------|
-|      GET         | http://[hostname]/todo/api/v1.0/tasks | Retrieve list of tasks |
