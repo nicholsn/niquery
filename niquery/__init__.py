@@ -1,1 +1,1 @@
-__author__ = 'Nolan Nichols <nolan.nichols@gmail.com'
+from query import SelectQuery
