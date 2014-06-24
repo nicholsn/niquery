@@ -10,5 +10,7 @@ SELECT DISTINCT ?type ?title ?description
 WHERE {
     ?summary a ?type ;
              dct:title ?title ;
-             dct:description ?description .
+             dct:description ?description ;
+             dct:publisher ?publisher ;
+             dct:license ?license .
 }
