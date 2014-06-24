@@ -9,10 +9,12 @@ import rdflib
 class AttrDict(dict):
     def __init__(self, *args, **kwargs):
         super(AttrDict, self).__init__(*args, **kwargs)
+        self.__dict__ = self
 
 # available namespaces
-NS = AttrDict(prov=rdflib.Namespace("http://www.w3.org/ns/prov#"),
-              nidm=rdflib.Namespace("http://www.incf.org/ns/nidash/nidm#"))
+NS = AttrDict(nidm=rdflib.Namespace("http://www.incf.org/ns/nidash/nidm#"),
+              niq=rdflib.Namespace("http://purl.org/niquery#"),
+              prov=rdflib.Namespace("http://www.w3.org/ns/prov#"))
 
 _sparql_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'sparql')
 
