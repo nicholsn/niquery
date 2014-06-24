@@ -8,13 +8,15 @@ import niquery as niq
 
 class DescriptorCase(unittest.TestCase):
     def setUp(self):
-        pass
+        self.turtle = os.path.join(os.path.dirname(__file__), 'data', 'nidm-descriptor.ttl')
+        self.query = niq.SelectQuery()
 
     def test_summary_must(self):
         """
         NIDM Descriptors MUST return one record the following elements to be a valid summary level description.
         """
-        query = niq.SelectQuery()
+        os.path.join(os.path.dirname(__file__), '..', 'sparql')
+
         self.assertEqual(True, True)
 
 
