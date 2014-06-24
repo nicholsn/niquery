@@ -1,30 +1,52 @@
 """
-The query module provides a collection of SPARQL queries over PROV and NI-DM objects.
+The query module provides an object to access SPARQL queries over PROV and NI-DM objects.
 """
+__author__ = 'Nolan Nichols <http://orcid.org/0000-0003-1099-3328>'
 
-__author__ = 'Nolan Nichols <nolan.nichols@gmail.com'
+import StringIO
 
-from rdflib import Graph, Namespace, RDF
+import rdflib
+import requests
+import pandas as pd
 
-PROV = Namespace("http://www.w3.org/ns/prov#")
-NIDM = Namespace("http://nidm.nidash.org/")
+import utils
 
-g = Graph(store="SPARQLStore")
 
-# bind namespace prefixes to the graph
-g.bind('prov', PROV)
-g.bind('nidm', NIDM)
+class QueryBase(object):
+    """
+    Base Query class that initializes a graph and provides available sparql metadata descriptions.
+    """
+    def __init__(self):
+        self._graph = rdflib.Graph()
+        self._bind_prefixes()
+        self.sparql_meta = self._get_sparql_meta()
 
-g.subjects(RDF.type, PROV.Entity)
+    def _get_sparql_meta(self):
+        sparql_meta = utils.get_sparql_meta_files()
+        self._graph.parse(sparql_meta[0], format='turtle')
+        with open(sparql_meta[1]) as query:
+            result = self._graph.query(query.read())
+            meta = StringIO.StringIO(result.serialize(format='csv'))
+            return pd.read_csv(meta)
 
-Entities = 'CONSTRUCT {?subject a prov:Entity .} WHERE {?subject a prov:Entity .}'
+    def _bind_prefixes(self):
+        for prefix, namespace in utils.NS.iteritems():
+            self._graph.bind(prefix, namespace)
 
-Activities = 'CONSTRUCT {?subject a prov:Activity .} WHERE {?subject a prov:Activity .}'
+    def get_graph(self):
+        return self._graph
 
-Agents = 'CONSTRUCT {?subject a prov:Agent .} WHERE {?subject a prov:Agent .}'
 
-Projects = 'CONSTRUCT {?subject a nidm:Project .} WHERE {?subject a nidm:Project .}'
+class SelectQuery(QueryBase):
+    def __init__(self):
+        super(SelectQuery, self).__init__()
 
-Participants = 'CONSTRUCT {?subject a prov:Person .} WHERE {?subject a nidm:Participant . ?subject prov:Role nidm:Participant?}'
+    def get_queries(self):
+        queries = self.sparql_meta
+        return queries
 
-Acquisitions = PREFIXES + 'CONSTRUCT {?subject a nidm:Acquisition .} WHERE {?subject a nidm:Acquisition .}'
+    def execute(self, turtle_file, query_url):
+        query = requests.get(query_url)
+        self._graph.parse(turtle_file, format='turtle')
+        result = self._graph.query(query.text)
+        return result
