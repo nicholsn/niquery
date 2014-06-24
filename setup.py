@@ -13,5 +13,5 @@ setup(
     license='Apache 2.0',
     description='Framework to query neuroimaging databases as RDF.',
     long_description=open('README').read(),
-    install_requires=["Flask", "Flask-RESTful", "prov", "PyLD", "rdflib", "requests"],
+    install_requires=["Flask", "Flask-RESTful", "prov", "PyLD", "rdflib", "requests", 'pandas'],
 )
