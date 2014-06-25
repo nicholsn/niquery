@@ -6,12 +6,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX nidm: <http://incf.org/ns/nidash/nidm#>
 PREFIX niq: <http://purl.org/niquery#>
 
-SELECT DISTINCT ?uri ?type ?title ?description ?publisher
+SELECT DISTINCT ?uri ?type ?title ?description ?publisher ?hasPart
 WHERE {
     ?uri a ?type ;
          dct:title ?title ;
          dct:description ?description ;
-         dct:publisher ?publisher .
+         dct:publisher ?publisher ;
+         dct:hasPart ?hasPart .
     OPTIONAL{ ?uri dct:isVersionOf ?isVersionOf . } # required at the version level
     FILTER (!bound(?isVersionOf))
     OPTIONAL{ ?uri dct:format ?format . } # required at the distribution level
