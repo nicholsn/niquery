@@ -21,6 +21,10 @@ NS = AttrDict(nidm=rdflib.Namespace("http://www.incf.org/ns/nidash/nidm#"),
 _sparql_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'sparql')
 
 
+def get_meta_path():
+    return os.path.join(_sparql_path, 'meta.ttl')
+
+
 def get_sparql_queries():
     queries = dict()
     for rq_file in os.listdir(_sparql_path):
