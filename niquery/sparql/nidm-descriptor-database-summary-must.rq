@@ -12,6 +12,8 @@ WHERE {
          dct:title ?title ;
          dct:description ?description ;
          dct:publisher ?publisher .
-    OPTIONAL{ ?uri dct:isVersionOf ?isVersionOf . }
+    OPTIONAL{ ?uri dct:isVersionOf ?isVersionOf . } # required at the version level
+    FILTER (!bound(?isVersionOf))
+    OPTIONAL{ ?uri dct:format ?format . } # required at the distribution level
     FILTER (!bound(?isVersionOf))
 }
