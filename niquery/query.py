@@ -25,7 +25,7 @@ class QueryBase(object):
         self.sparql_meta = self._get_sparql_meta()
 
     def _get_sparql_meta(self):
-        self._graph.parse(self._queries['meta.ttl'], format='turtle')
+        self._graph.parse(os.path.join(utils.get_meta_path()), format='turtle')
         result = self._graph.query(self._queries['meta.rq'])
         return utils.result_to_dataframe(result)
 
