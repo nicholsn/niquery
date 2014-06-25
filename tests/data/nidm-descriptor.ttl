@@ -50,7 +50,7 @@
     pav:hasCurrentVersion :project-1.0.0 ;
     dct:license <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
     dct:publisher <https://database.com> ;
-    prov:specializationOf :this ;
+    prov:specializationOf :this .
 
     
 # Version-level description of :project.
