@@ -106,12 +106,12 @@
     niq:model        niq:Results ;
     niq:columns      "?cfile", "?efile" .
 
-<https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/validate-descriptor-summary-must.rq#this> a niq:SelectQuery ;
-    dct:title        "Validate Descriptor Summary Must" ;
+<https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/nidm-descriptor-database-summary-must.rq#this> a niq:SelectQuery ;
+    dct:title        "NIDM Dataset Descriptor Summary-level" ;
     dct:description  "Query a graph to match the MUST attributes for the summary level of a descriptor." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/validate-descriptor-summary-must.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/nidm-descriptor-database-summary-must.rq> ;
     dcat:keyword     "query", "contrast", "results" ;
     niq:model        niq:Results ;
     niq:columns      "?uri", "?title", "?description", "?creator", "?format", "?downloadURL", "?keyword", "?model" .

@@ -6,11 +6,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX nidm: <http://incf.org/ns/nidash/nidm#>
 PREFIX niq: <http://purl.org/niquery#>
 
-SELECT DISTINCT ?type ?title ?description
+SELECT DISTINCT ?uri ?type ?title ?description ?publisher
 WHERE {
-    ?summary a ?type ;
-             dct:title ?title ;
-             dct:description ?description ;
-             dct:publisher ?publisher ;
-             dct:license ?license .
+    ?uri a ?type ;
+         dct:title ?title ;
+         dct:description ?description ;
+         dct:publisher ?publisher .
+    OPTIONAL{ ?uri dct:isVersionOf ?isVersionOf . }
+    FILTER (!bound(?isVersionOf))
 }
