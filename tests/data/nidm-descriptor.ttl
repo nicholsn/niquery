@@ -19,16 +19,16 @@
 # Database summary-level Description
 :database
     a dctypes:Dataset ;
-    dct:title "Database"@en ;
+    dct:title "Database Summary Title"@en ;
     dct:identifier "database"@en ;
-    dct:description "A database."@en ;
+    dct:description "Database summary-level description."@en ;
     dct:accrualPeriodicity freq:continuous ;
-    dct:alternative "OpenfMRI"@en ;
+    dct:alternative "Database"@en ;
     dct:hasPart :project ;
     dct:language <http://lexvo.org/id/iso639-3/en> ;
     dct:license <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
     dct:publisher <https://publisher.org> ;
-    dct:rights """Rights.""" ;
+    dct:rights "Rights." ;
     dct:source <https://database.com> ;
     idot:accessPattern <https://openfmri.org/data-sets> ;
     idot:alternatePrefix "db" ;
@@ -43,9 +43,9 @@
 # Project summary-level description.
 :project
     a dctypes:Dataset ;
-    dct:title "Project Title"@en ;
+    dct:title "Project Summary Title"@en ;
     dct:identifier "db001"@en ;
-    dct:description "Project Description."@en ;
+    dct:description "Project summary-level description."@en ;
     dcat:accessURL <http://database.com/project> ;
     pav:hasCurrentVersion :project-1.0.0 ;
     dct:license <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
@@ -57,7 +57,7 @@
 :project-1.0.0
     a dctypes:Dataset ;
     dct:title "Project Version Title"@en ;
-    dct:description "Project version description."@en ;
+    dct:description "Project version-level description."@en ;
     dct:license <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
     dct:creator <http://database.com> ;
     dct:publisher <http://database.com> ;

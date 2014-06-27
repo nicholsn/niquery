@@ -6,7 +6,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX nidm: <http://incf.org/ns/nidash/nidm#>
 PREFIX niq: <http://purl.org/niquery#>
 
-SELECT ?uri ?title ?description ?creator ?format ?downloadURL (GROUP_CONCAT(?keyword;SEPARATOR=";") AS ?keywords) ?model
+SELECT DISTINCT ?uri ?title ?description ?creator ?format ?downloadURL (GROUP_CONCAT(?keyword;SEPARATOR=";") AS ?keywords) ?model
 WHERE {
     ?uri a niq:SelectQuery ;
         dct:title ?title ;
@@ -17,4 +17,4 @@ WHERE {
         dcat:keyword ?keyword ;
         niq:model ?model .
     }
-GROUP BY ?title
+GROUP BY ?uri
