@@ -1,0 +1,6 @@
+SELECT DISTINCT ?namedgraph ?label
+WHERE {
+  GRAPH ?namedgraph { ?s ?p ?o }
+  OPTIONAL { ?namedgraph rdfs:label ?label }
+}
+ORDER BY ?namedgraph
