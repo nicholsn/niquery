@@ -1,0 +1,3 @@
+SELECT DISTINCT ?property
+WHERE { [] ?property [] }
+ORDER BY ?property
