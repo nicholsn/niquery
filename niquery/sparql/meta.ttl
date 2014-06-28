@@ -144,7 +144,18 @@ rq:BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4.rq
     dct:description  "Select all of the distinct properties in a triplestore." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4.rq> ;
+    dcat:keyword     "property" ;
+    niq:model        niq:General ;
+    niq:columns      "?property" .
+
+rq:61DA2C92-C08A-4040-A445-E0806CBE552A.rq
+    a niq:SelectQuery ;
+    dct:title        "Select All Distinct Classes" ;
+    dct:description  "Select all of the distinct classes in a triplestore." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/61DA2C92-C08A-4040-A445-E0806CBE552A.rq> ;
     dcat:keyword     "property" ;
     niq:model        niq:General ;
     niq:columns      "?property" .
