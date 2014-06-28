@@ -25,8 +25,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix nidm: <http://incf.org/ns/nidash/nidm#> .
 @prefix niq: <http://purl.org/niquery#> .
+@prefix rq: <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/> .
 
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/meta.rq#this> a niq:SelectQuery ;
+rq:meta.rq a niq:SelectQuery ;
     dct:title        "Select All Queries" ;
     dct:description  "Select all of the queries in meta.ttl and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -36,7 +37,7 @@
     niq:model        niq:QueryMetadata ;
     niq:columns      "?title", "?description", "?creator", "?format", "?downloadURL", "?keywords", "?model" .
 
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/projects.rq#this> a niq:SelectQuery ;
+rq:projects.rq a niq:SelectQuery ;
     dct:title        "Select All Projects" ;
     dct:description  "Select all of the projects and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -46,7 +47,7 @@
     niq:model        nidm:Project ;
     niq:columns      "?title", "?description", "?model" .
 
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/studies.rq#this> a niq:SelectQuery ;
+rq:studies.rq a niq:SelectQuery ;
     dct:title        "Select All Studies" ;
     dct:description  "Select all of the studies and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -56,7 +57,7 @@
     niq:model        niq:Study ;
     niq:columns      "?title", "?description", "?model" .
 
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/acquisitions.rq#this> a niq:SelectQuery ;
+rq:acquisitions.rq a niq:SelectQuery ;
     dct:title        "Select All Acquisitions" ;
     dct:description  "Select all of the acquisitions and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -66,7 +67,7 @@
     niq:model        niq:Study ;
     niq:columns      "?title", "?description", "?model" .
 
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/summaries.rq#this> a niq:SelectQuery ;
+rq:summaries.rq a niq:SelectQuery ;
     dct:title        "Select All Summaries" ;
     dct:description  "Select all of the summaries and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -76,7 +77,7 @@
     niq:model        niq:Summary ;
     niq:columns      "?title", "?description", "?model" .
     
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/versions.rq#this> a niq:SelectQuery ;
+rq:versions.rq a niq:SelectQuery ;
     dct:title        "Select All Versions" ;
     dct:description  "Select all of the versions and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -86,7 +87,7 @@
     niq:model        niq:Version ;
     niq:columns      "?title", "?description", "?model" .
     
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/distributions.rq#this> a niq:SelectQuery ;
+rq:distributions.rq a niq:SelectQuery ;
     dct:title        "Select All Distributions" ;
     dct:description  "Select all of the distributions and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -96,7 +97,7 @@
     niq:model        niq:Distribution ;
     niq:columns      "?title", "?description", "?model" .
     
-<https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/contrasts.rq#this> a niq:SelectQuery ;
+rq:contrasts.rq a niq:SelectQuery ;
     dct:title        "Select All Contrasts" ;
     dct:description  "Select all of the Contrasts and return a table of the Contrast and Varcope files." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -106,7 +107,7 @@
     niq:model        niq:Results ;
     niq:columns      "?cfile", "?efile" .
 
-<https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/nidm-descriptor-database-summary-must.rq#this> a niq:SelectQuery ;
+rq:nidm-descriptor-database-summary-must.rq a niq:SelectQuery ;
     dct:title        "NIDM Dataset Descriptor Summary-level" ;
     dct:description  "Query a graph to match the MUST attributes for the summary level of a descriptor." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
