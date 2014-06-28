@@ -133,7 +133,7 @@ rq:F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq
     dct:description  "Select all of the Named Graphs in a given Quad Store." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/contrasts.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq> ;
     dcat:keyword     "named graph" ;
-    niq:model        niq:Results ;
+    niq:model        niq:General ;
     niq:columns      "?namedgraph", "?label" .
