@@ -159,3 +159,15 @@ rq:61DA2C92-C08A-4040-A445-E0806CBE552A.rq
     dcat:keyword     "property" ;
     niq:model        niq:General ;
     niq:columns      "?property" .
+
+rq:5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq
+    a niq:SelectQuery ;
+    dct:title        "Select a Freesurfer Object with stats" ;
+    dct:description  "Select all of the stats from a freesurfer object located at a gist." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq> ;
+    dcat:keyword     "freesurfer" ;
+    niq:model        niq:FreeSurfer ;
+    niq:columns      "?subjectID ?tag ?vol ?segID ?annotation ?max ?mean" .
+
