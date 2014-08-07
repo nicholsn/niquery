@@ -19,7 +19,7 @@ class DescriptorCase(unittest.TestCase):
         """
         Project Summary-level description that MUST be present.
         """
-        test_query = 'nidm-descriptor-database-summary-must.rq'
+        test_query = 'B0E44766-B5FD-442B-98D8-993DF49A868C.rq'
         test_filter = self.select.sparql_meta.downloadURL.str.contains(test_query)
         test_record = self.select.sparql_meta[test_filter]
         idx = test_record.index.to_native_types()[0]
