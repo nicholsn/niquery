@@ -1,0 +1,20 @@
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX nidm: <http://incf.org/ns/nidash/nidm#>
+PREFIX niq: <http://purl.org/niquery#>
+
+SELECT DISTINCT ?uri ?type ?title ?description ?publisher ?hasPart
+WHERE {
+    ?uri a ?type ;
+         dct:title ?title ;
+         dct:description ?description ;
+         dct:publisher ?publisher ;
+         dct:hasPart ?hasPart .
+    OPTIONAL{ ?uri dct:isVersionOf ?isVersionOf . } # required at the version level
+    FILTER (!bound(?isVersionOf))
+    OPTIONAL{ ?uri dct:format ?format . } # required at the distribution level
+    FILTER (!bound(?isVersionOf))
+}
