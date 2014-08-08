@@ -1,8 +1,10 @@
+[![Build Status](https://travis-ci.org/nicholsn/niquery.svg?branch=master)](https://travis-ci.org/nicholsn/niquery)
 NIQuery
 =======
-NiQuery is an effort to specify and demonstrate an application programming interface (API) that provides:
+NIQuery is (currently) and experimental project for accessing, querying, and computing with [NIDM](http://nidm.nidash.org) 
+documents that provide provenance information about brain imaging datasets. Curently it is working towards demonstrating:
 
-- a repository of SPARQL queries for NIDM 
+- a repository of SPARQL queries for NIDM described using turtle rdf
 - a python library to ease the use of NIDM SPARQL queries
 - an restful web api to execute queries
 - queue management for executing nipype workflows
