@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/nicholsn/niquery.svg?branch=master)](https://travis-ci.org/nicholsn/niquery)
+[![Build Status](https://travis-ci.org/nicholsn/niquery.svg?branch=master)](https://travis-ci.org/nicholsn/niquery)[![Coverage Status](https://coveralls.io/repos/nicholsn/niquery/badge.png)](https://coveralls.io/r/nicholsn/niquery)
+
 NIQuery
 =======
 NIQuery is (currently) and experimental project for accessing, querying, and computing with [NIDM](http://nidm.nidash.org) 
