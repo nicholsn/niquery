@@ -12,6 +12,6 @@ setup(
     url='http://pypi.python.org/pypi/niquery/',
     license='Apache 2.0',
     description='Framework to query neuroimaging databases as RDF.',
-    long_description=open('README').read(),
+    long_description=open('README.md').read(),
     install_requires=["Flask", "Flask-RESTful", "prov", "PyLD", "rdflib", "requests", 'pandas'],
 )
