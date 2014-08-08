@@ -12,6 +12,8 @@ before_install:
 # install  packages
 install:
   - conda update --yes conda
+  - conda create -n testenv --yes pip python=$TRAVIS_PYTHON_VERSION
+  - source activate testenv
   - conda install --yes numpy scipy pandas requests flask
   - pip install python-coveralls --use-mirrors
   - pip install nose-cov --use-mirrors
