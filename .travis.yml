@@ -14,11 +14,12 @@ install:
   - conda update --yes conda
   - conda create -n testenv --yes pip python=$TRAVIS_PYTHON_VERSION
   - source activate testenv
-  - conda install --yes numpy scipy pandas requests flask
+  - conda install --yes numpy scipy pandas requests flask pyyaml
   - pip install python-coveralls --use-mirrors
   - pip install nose-cov --use-mirrors
   - pip install https://github.com/RDFLib/rdflib/archive/master.zip
   - pip install https://github.com/trungdong/prov/archive/rdf.zip
+  - pip install https://github.com/celery/celery/archive/master.zip
   - python setup.py install
 
 # command to run tests, e.g. python setup.py test

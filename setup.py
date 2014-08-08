@@ -15,6 +15,7 @@ setup(
     long_description=open('README.md').read(),
     install_requires=["Flask-RESTful>=0.2",
                       "Flask>=0.10",
+                      "celery>=3.1",
                       "prov>=0.5",
                       "rdflib>=4.1",
                       "requests>=2.3",
