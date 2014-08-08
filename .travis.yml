@@ -1,11 +1,28 @@
 language: python
 python:
   - "2.7"
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-# e.g., pip install -r requirements.txt
+# setup anaconda
+
+before_install:
+  - wget http://repo.continuum.io/miniconda/Miniconda-3.0.0-Linux-x86_64.sh -O miniconda.sh
+  - chmod +x miniconda.sh
+  - ./miniconda.sh -b
+  - export PATH=/home/travis/miniconda/bin:$PATH
+
+# install  packages
 install:
+  - conda update --yes conda
+  - conda install --yes numpy scipy pandas requests flask
+  - pip install python-coveralls --use-mirrors
+  - pip install nose-cov --use-mirrors
+  - pip install https://github.com/RDFLib/rdflib/archive/master.zip
+  - pip install https://github.com/trungdong/prov/archive/rdf.zip
   - python setup.py install
 
 # command to run tests, e.g. python setup.py test
 script:
-  - nosetests
+  - nosetests --with-doctest --with-cov --cov niquery --cov-config .coveragerc --logging-level=INFO
+
+# Calculate coverage
+after_success:
+  - coveralls --config_file .coveragerc
