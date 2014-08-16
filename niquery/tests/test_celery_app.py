@@ -1,6 +1,6 @@
 __author__ = 'Nolan Nichols <orcid.org/0000-0003-1099-3328>'
 
-from niquery.celery import make_celery
+from niquery.celery_app import make_celery
 
 import mock
 import unittest
