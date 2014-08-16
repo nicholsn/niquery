@@ -7,3 +7,12 @@ import argparse
 from flask import Flask
 from flask import json as json_flask
 from flask.wrappers import Request, _missing, _get_data
+
+from niquery.celery_app import make_celery
+
+flask_app = Flask(__name__)
+flask_app.config.update(
+    CELERY_BROKER_URL='redis://localhost:6379',
+    CELERY_RESULT_BACKEND='redis://localhost:6379'
+)
+celery = make_celery(flask_app)
