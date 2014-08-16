@@ -1,6 +1,6 @@
 from __future__ import unicode_literals, absolute_import
 
-import os
+import os, sys
 
 from flask import Flask, jsonify, request
 
@@ -36,6 +36,12 @@ def show_result(task_id):
     return repr(retval)
 
 
-if __name__ == "__main__":
+def main(broker=None):
+    if broker:
+        flask_app.config.update(CELERY_BROKER_URL=broker,
+                                CELERY_RESULT_BACKEND=broker,)
     port = int(os.environ.get("PORT", 5000))
     flask_app.run(host='0.0.0.0', port=port, debug=True)
+
+if __name__ == "__main__":
+    sys.exit(main())
