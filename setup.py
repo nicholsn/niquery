@@ -19,5 +19,5 @@ setup(
                       "prov>=0.5",
                       "rdflib>=4.1",
                       "requests>=2.3",
-                      'pandas>=0.14'],
+                      'pandas>=0.14', 'mock'],
 )
