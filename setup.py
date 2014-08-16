@@ -8,7 +8,7 @@ setup(
     packages=find_packages(exclude=["tests.*", "tests"]),
     package_dir={"niquery": "niquery"},
     package_data={"niquery": ["data/*.ttl"]},
-    #scripts=["scripts/niquery"],
+    scripts=["bin/niquery"],
     url='http://pypi.python.org/pypi/niquery/',
     license='Apache 2.0',
     description='Framework to query neuroimaging databases as RDF.',
@@ -19,5 +19,6 @@ setup(
                       "prov>=0.5",
                       "rdflib>=4.1",
                       "requests>=2.3",
-                      'pandas>=0.14', 'mock'],
+                      'pandas>=0.14',
+                      'mock>=1.0'],
 )
