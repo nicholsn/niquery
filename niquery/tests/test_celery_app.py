@@ -1,14 +1,16 @@
 __author__ = 'Nolan Nichols <orcid.org/0000-0003-1099-3328>'
 
-from niquery.celery_app import make_celery
-
-import mock
 import unittest
+
+from mock import patch
+
+from niquery.app import flask_app
+from niquery.celery_app import make_celery
 
 
 class MakeCeleryTestCase(unittest.TestCase):
 
-    @mock.patch('niquery.Celery')
+    @patch('niquery.celery_app.Celery')
     def test_make_celery(self, mock_Celery):
-        make_celery("Flask App Instance")
-        mock_Celery.assert_called_with("Flask App Instance")
+        make_celery(flask_app)
+        mock_Celery.assert_called_with(flask_app.import_name)
