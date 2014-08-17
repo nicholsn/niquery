@@ -14,6 +14,7 @@ RUN pip install -q https://github.com/twilio/flask-restful/archive/master.zip
 RUN pip install -q https://github.com/RDFLib/rdflib/archive/master.zip
 RUN pip install -q https://github.com/trungdong/prov/archive/rdf.zip
 RUN pip install -q https://github.com/celery/celery/archive/master.zip
+RUN pip install -q https://github.com/nicholsn/niquery/archive/master.zip
 
 EXPOSE 5000
 CMD /usr/local/miniconda/bin/niquery
