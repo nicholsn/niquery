@@ -12,9 +12,9 @@ flask_app = Flask(__name__)
 flask_app.config.from_object('niquery.config')
 
 # docker containers use rabbitmq DB link
-if os.environ.get('DB_PORT_5672_TCP_ADDR'):
-    host = os.environ.get('DB_PORT_5672_TCP_ADDR', None)
-    port = os.environ.get('DB_PORT_5672_TCP_PORT', None)
+if os.environ.get('MQ_PORT_5672_TCP_ADDR'):
+    host = os.environ.get('MQ_PORT_5672_TCP_ADDR', None)
+    port = os.environ.get('MQ_PORT_5672_TCP_PORT', None)
     broker = "amqp://{0}:{1}//".format(host, port)
     flask_app.config.update(CELERY_BROKER_URL=broker,
                             CELERY_RESULT_BACKEND=broker)
