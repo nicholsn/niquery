@@ -4,7 +4,7 @@ import unittest
 
 from mock import patch
 
-from niquery.app import flask_app
+from niquery.app import app
 from niquery.celery_app import make_celery
 
 
@@ -12,5 +12,5 @@ class MakeCeleryTestCase(unittest.TestCase):
 
     @patch('niquery.celery_app.Celery')
     def test_make_celery(self, mock_Celery):
-        make_celery(flask_app)
-        mock_Celery.assert_called_with(flask_app.import_name, broker=flask_app.config['CELERY_BROKER_URL'])
+        make_celery(app)
+        mock_Celery.assert_called_with(app.import_name, broker=app.config['CELERY_BROKER_URL'])
