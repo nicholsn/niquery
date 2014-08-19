@@ -60,3 +60,7 @@ class SelectQuery(QueryBase):
         self._graph.parse(source=turtle_file, location=turtle_url, format='turtle')
         result = self._graph.query(query)
         return utils.result_to_dataframe(result)
+
+# TODO: 'Validate' NIDM API (Dataset Descriptor)
+# TODO: Infer NIDM from XNAT + EXCEL (Experiment)
+# TODO: Compute from NIDM (Workflow + Results)
