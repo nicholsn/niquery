@@ -21,10 +21,25 @@ class QueryBaseTestCase(unittest.TestCase):
         res = self.query.describe_query(1)
         self.assertGreater(len(res), 1)
 
+    def test_execute(self):
+        res = self.query.execute(0)
+        self.assertIsNone(res)
+
     def test_get_graph(self):
         self.assertIsInstance(self.query.get_graph(), rdflib.Graph)
 
 
+class SelectQueryTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.query = SelectQuery()
+
+    def test_init(self):
+        self.assertIsInstance(self.query, SelectQuery)
+        self.assertGreater(len(self.query.sparql_meta), 0)
+
+    def test_execute(self):
+        self.assertRaises(Exception, self.query.execute, 0)
 
 if __name__ == '__main__':
     unittest.main()
