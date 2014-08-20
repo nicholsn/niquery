@@ -24,14 +24,13 @@ class QueryBase(object):
         self._bind_prefixes()
         self.sparql_meta = self._get_sparql_meta()
 
-    def _get_sparql_meta(self):
-        self._graph.parse(os.path.join(utils.get_meta_path()), format='turtle')
-        result = self._graph.query(self._queries['meta.rq'])
-        return utils.result_to_dataframe(result)
-
     def _bind_prefixes(self):
         for prefix, namespace in utils.NS.iteritems():
             self._graph.bind(prefix, namespace)
+
+    def _filter_queries(self, ns):
+        select_filter = self.sparql_meta.format == str(ns)
+        return self.sparql_meta[select_filter]
 
     def _get_query_string(self, index):
         queries = utils.get_sparql_queries()
@@ -39,28 +38,34 @@ class QueryBase(object):
         base = os.path.basename(urlparse.urlsplit(row.downloadURL).path)
         return queries[base]
 
-    def get_graph(self):
-        return self._graph
+    def _get_sparql_meta(self):
+        self._graph.parse(os.path.join(utils.get_meta_path()),
+                          format='turtle')
+        result = self._graph.query(self._queries['meta.rq'])
+        return utils.result_to_dataframe(result)
 
     def describe_query(self, index):
         return self.sparql_meta.iloc[index]
+
+    def get_graph(self):
+        return self._graph
 
 
 class SelectQuery(QueryBase):
     def __init__(self):
         super(SelectQuery, self).__init__()
-        self.sparql_meta = self._filter_queries()
-
-    def _filter_queries(self):
-        select_filter = self.sparql_meta.format == str(utils.NS.niq.Select)
-        return self.sparql_meta[select_filter]
+        self.sparql_meta = self._filter_queries(utils.NS.niq.Select)
 
     def execute(self, query_index, turtle_file=None, turtle_url=None):
         query = self._get_query_string(query_index)
-        self._graph.parse(source=turtle_file, location=turtle_url, format='turtle')
+        self._graph.parse(source=turtle_file,
+                          location=turtle_url,
+                          format='turtle')
         result = self._graph.query(query)
         return utils.result_to_dataframe(result)
 
-# TODO: 'Validate' NIDM API (Dataset Descriptor)
-# TODO: Infer NIDM from XNAT + EXCEL (Experiment)
-# TODO: Compute from NIDM (Workflow + Results)
+
+class AskQuery(QueryBase):
+    def __init__(self):
+        super(AskQuery, self).__init__()
+

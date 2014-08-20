@@ -62,7 +62,7 @@ parser.add_argument('x', type=int, help='X')
 parser.add_argument('Y', type=int, help='Y')
 
 
-class HelloWorld(Resource):
+class Validate(Resource):
     def get(self):
         x = 5
         y = 10
@@ -78,9 +78,13 @@ class ShowResult(Resource):
         retval = add.AsyncResult(task_id).get(timeout=1.0)
         return repr(retval)
 
-api.add_resource(HelloWorld, '/helloworld')
+api.add_resource(Validate, '/validate')
 api.add_resource(ShowResult, '/helloworld/<string:task_id>')
 
 if __name__ == "__main__":
 
     app.run(host=app.config['HOST'], port=app.config['PORT'])
+
+# TODO: 'Validate' NIDM API (Dataset Descriptor)
+# TODO: Infer NIDM from XNAT + EXCEL (Experiment)
+# TODO: Compute from NIDM (Workflow + Results)
