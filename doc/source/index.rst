@@ -13,7 +13,7 @@ Contents:
 
    intro
    tutorial
-
+   api
 
 
 Indices and tables
