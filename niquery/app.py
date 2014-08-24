@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import os
 
+import requests
 from celery import Celery
 from flask import Flask, jsonify
 from flask.ext.restful import Api, Resource, reqparse
@@ -57,9 +58,26 @@ celery = make_celery(app)
 def add(x, y):
     return x + y
 
+@celery.task(name='tasks.bet')
+def bet(in_file_uri):
+    import nipype
+    nipype.config.enable_provenance()
+
+    fname = '/data/anatomy.nii.gz'
+
+    with open(fname, 'wb') as fd:
+        response = requests.get(in_file_uri, stream=True)
+        if not response.ok:
+            response.raise_for_status()
+        for chunk in response.iter_content(1024):
+            fd.write(chunk)
+
+    bet = nipype.fsl.BET()
+    bet.inputs.in_file = os.path.abspath(fname)
+    result = bet.run()
+    return result.provenance.rdf().serialize(format='turtle')
+
 parser = reqparse.RequestParser()
-parser.add_argument('x', type=int, help='X')
-parser.add_argument('Y', type=int, help='Y')
 
 
 class Validate(Resource):
