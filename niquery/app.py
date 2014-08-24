@@ -84,7 +84,7 @@ class Validate(Resource):
     def get(self):
         x = 5
         y = 10
-        res = add.apply_async((x, y))
+        res = add.apply_async([x, y])
         context = {"id": res.task_id, "x": x, "y": y}
         result = "add((x){}, (y){})".format(context['x'], context['y'])
         goto = "{}".format(context['id'])
@@ -100,7 +100,7 @@ class ValidateResult(Resource):
 class Compute(Resource):
     def get(self):
         in_file_uri = "http://openfmri.s3.amazonaws.com/ds001/sub001/anatomy/highres001.nii.gz"
-        res = bet.apply_async(in_file_uri)
+        res = bet.apply_async([in_file_uri])
         result = {"task_id": res.task_id, "task": "Run FSL BET", "in_file_uri": in_file_uri}
         return jsonify(result=result)
 
