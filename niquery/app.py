@@ -63,7 +63,7 @@ def bet(in_file_uri):
     import nipype
     nipype.config.enable_provenance()
 
-    fname = '/data/anatomy.nii.gz'
+    fname = '/anatomy.nii.gz'
 
     with open(fname, 'wb') as fd:
         response = requests.get(in_file_uri, stream=True)
@@ -91,13 +91,29 @@ class Validate(Resource):
         return jsonify(result=result, goto=goto)
 
 
-class ShowResult(Resource):
+class ValidateResult(Resource):
     def get(self, task_id):
         retval = add.AsyncResult(task_id).get(timeout=1.0)
         return repr(retval)
 
+
+class Compute(Resource):
+    def get(self):
+        in_file_uri = "http://openfmri.s3.amazonaws.com/ds001/sub001/anatomy/highres001.nii.gz"
+        res = bet.apply_async(in_file_uri)
+        result = {"task_id": res.task_id, "task": "Run FSL BET", "in_file_uri": in_file_uri}
+        return jsonify(result=result)
+
+
+class ComputeResult(Resource):
+    def get(self, task_id):
+        retval = bet.AsyncResult(task_id).get(timeout=1.0)
+        return repr(retval)
+
 api.add_resource(Validate, '/validate')
-api.add_resource(ShowResult, '/helloworld/<string:task_id>')
+api.add_resource(ValidateResult, '/validate/<string:task_id>')
+api.add_resource(Compute, '/compute')
+api.add_resource(ComputeResult, '/compute/<string:task_id>')
 
 if __name__ == "__main__":
 
