@@ -13,7 +13,7 @@ ENV PATH /usr/local/miniconda/bin:$PATH
 
 RUN \
   conda update -q conda && \
-  conda install -q pip flask mock pandas requests nose networkx scipy numpy ipython-notebook dateutil && \
+  conda install -q pip flask mock pandas requests nose networkx scipy numpy ipython-notebook dateutil traits && \
   pip install -q celery && \
   pip install -q https://github.com/twilio/flask-restful/archive/master.zip && \
   pip install -q https://github.com/RDFLib/rdflib/archive/master.zip && \
