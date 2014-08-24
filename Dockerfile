@@ -19,7 +19,7 @@ RUN \
   pip install -q https://github.com/RDFLib/rdflib/archive/master.zip && \
   pip install -q https://github.com/trungdong/prov/archive/rdf.zip && \
   pip install -q https://github.com/nicholsn/niquery/archive/master.zip && \
-  pip install -q https://github.com/nipy/nipype/archive/master.zip && \
+  pip install -q https://github.com/nipy/nipype/archive/master.zip
 
 EXPOSE 5000
 CMD /usr/local/miniconda/bin/niquery
