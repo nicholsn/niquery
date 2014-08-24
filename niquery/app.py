@@ -61,6 +61,8 @@ def add(x, y):
 @celery.task(name='tasks.bet')
 def bet(in_file_uri):
     import nipype
+    from nipype.interfaces.fsl import BET
+
     nipype.config.enable_provenance()
 
     fname = '/anatomy.nii.gz'
@@ -72,7 +74,7 @@ def bet(in_file_uri):
         for chunk in response.iter_content(1024):
             fd.write(chunk)
 
-    bet = nipype.fsl.BET()
+    bet = BET()
     bet.inputs.in_file = os.path.abspath(fname)
     result = bet.run()
     return result.provenance.rdf().serialize(format='turtle')
