@@ -5,11 +5,8 @@ __author__ = 'Nolan Nichols <http://orcid.org/0000-0003-1099-3328>'
 
 import os
 import urlparse
-import StringIO
 
 import rdflib
-import requests
-import pandas as pd
 
 import niquery.utils as utils
 
