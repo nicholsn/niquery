@@ -14,13 +14,13 @@ install:
   - conda update --yes conda
   - conda create -n testenv --yes pip python=$TRAVIS_PYTHON_VERSION
   - source activate testenv
-  - conda install --yes numpy scipy pandas requests flask pyyaml traits networkx dateutil 
+  - conda install --yes numpy scipy pandas requests flask pyyaml traits networkx dateutil
   - pip install -q python-coveralls --use-mirrors
   - pip install -q nose-cov --use-mirrors
   - pip install -q https://github.com/RDFLib/rdflib/archive/master.zip
   - pip install -q https://github.com/trungdong/prov/archive/rdf.zip
-  - pip install -q https://github.com/nipy/nipype/archive/rdf.zip
-  - pip install -q https://github.com/nipy/nibabel/archive/rdf.zip
+  - pip install -q https://github.com/nipy/nipype/archive/master.zip
+  - pip install -q https://github.com/nipy/nibabel/archive/master.zip
   - pip install -q celery
   - python setup.py install
 
