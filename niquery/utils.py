@@ -16,6 +16,7 @@ class AttrDict(dict):
 # available namespaces
 NS = AttrDict(nidm=rdflib.Namespace("http://www.incf.org/ns/nidash/nidm#"),
               niq=rdflib.Namespace("http://purl.org/niquery#"),
+              rq=rdflib.Namespace("http://purl.org/niquery/id/"),
               prov=rdflib.Namespace("http://www.w3.org/ns/prov#"))
 
 _sparql_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'sparql')
