@@ -20,5 +20,5 @@ setup(
                       "rdflib>=4.1",
                       "requests>=2.3",
                       'pandas>=0.14',
-                      'mock>=1.0'],
+                      'mock>=1.0', 'nipype'],
 )

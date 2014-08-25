@@ -74,9 +74,9 @@ def bet(in_file_uri):
         for chunk in response.iter_content(1024):
             fd.write(chunk)
 
-    bet = BET()
-    bet.inputs.in_file = os.path.abspath(fname)
-    result = bet.run()
+    better = BET()
+    better.inputs.in_file = os.path.abspath(fname)
+    result = better.run()
     return result.provenance.rdf().serialize(format='turtle')
 
 parser = reqparse.RequestParser()
@@ -99,6 +99,23 @@ class ValidateResult(Resource):
         return repr(retval)
 
 
+class Inference(Resource):
+    def get(self):
+        x = 5
+        y = 10
+        res = add.apply_async([x, y])
+        context = {"id": res.task_id, "x": x, "y": y}
+        result = "add((x){}, (y){})".format(context['x'], context['y'])
+        goto = "{}".format(context['id'])
+        return jsonify(result=result, goto=goto)
+
+
+class InferenceResult(Resource):
+    def get(self, task_id):
+        retval = add.AsyncResult(task_id).get(timeout=1.0)
+        return repr(retval)
+
+
 class Compute(Resource):
     def get(self):
         in_file_uri = "http://openfmri.s3.amazonaws.com/ds001/sub001/anatomy/highres001.nii.gz"
@@ -114,6 +131,8 @@ class ComputeResult(Resource):
 
 api.add_resource(Validate, '/validate')
 api.add_resource(ValidateResult, '/validate/<string:task_id>')
+api.add_resource(Compute, '/inference')
+api.add_resource(ComputeResult, '/inference/<string:task_id>')
 api.add_resource(Compute, '/compute')
 api.add_resource(ComputeResult, '/compute/<string:task_id>')
 
