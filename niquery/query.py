@@ -11,7 +11,7 @@ import rdflib
 import requests
 import pandas as pd
 
-import utils
+import niquery.utils as utils
 
 
 class QueryBase(object):
@@ -55,7 +55,8 @@ class QueryBase(object):
         self._graph.parse(os.path.join(utils.get_meta_path()),
                           format='turtle')
         result = self._graph.query(self._queries['meta.rq'])
-        return utils.result_to_dataframe(result)
+        df = utils.result_to_dataframe(result)
+        return df.set_index(df.uri)
 
     def describe_query(self, index):
         """
@@ -89,9 +90,9 @@ class SelectQuery(QueryBase):
 
         Parameters
         ----------
-        query_index : int
+        query_index : str
         turtle_file : str, optional
-        turtle)url : string, optional
+        turtle_url : str, optional
 
         Returns
         -------
@@ -109,4 +110,27 @@ class SelectQuery(QueryBase):
 class AskQuery(QueryBase):
     def __init__(self):
         super(AskQuery, self).__init__()
+        self.sparql_meta = self._filter_queries(utils.NS.niq.Ask)
+
+    def execute(self, query_index, turtle_file=None, turtle_url=None):
+        """
+        Execute a query using the index
+
+        Parameters
+        ----------
+        query_index : str
+        turtle_file : str, optional
+        turtle_url : str, optional
+
+        Returns
+        -------
+        result : bool
+            Boolean result from ASK SPARQL query
+        """
+        query = self._get_query_string(query_index)
+        self._graph.parse(source=turtle_file,
+                          location=turtle_url,
+                          format='turtle')
+        result = self._graph.query(query)
+        return result.askAnswer
 
