@@ -4,7 +4,7 @@ import os
 
 import requests
 from celery import Celery
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 from flask.ext.restful import Api, Resource, reqparse
 
 
@@ -52,6 +52,15 @@ def make_celery(app):
 app = create_app()
 api = Api(app)
 
+@api.representation('text/turtle')
+def turtle(data, code, headers=None):
+    import rdflib
+    g = rdflib.Graph()
+    g.parse(file=data)
+    resp = make_response(g.serialize(format='turtle'), code)
+    resp.headers.extend(headers or {})
+    return resp
+
 celery = make_celery(app)
 
 @celery.task(name="tasks.add")
@@ -77,7 +86,7 @@ def bet(in_file_uri):
     better = BET()
     better.inputs.in_file = os.path.abspath(fname)
     result = better.run()
-    return result.provenance.rdf().serialize(format='turtle')
+    return result.outputs.out_file
 
 parser = reqparse.RequestParser()
 
@@ -129,10 +138,11 @@ class ComputeResult(Resource):
         retval = bet.AsyncResult(task_id).get(timeout=1.0)
         return repr(retval)
 
+# Endpoints
 api.add_resource(Validate, '/validate')
 api.add_resource(ValidateResult, '/validate/<string:task_id>')
-api.add_resource(Compute, '/inference')
-api.add_resource(ComputeResult, '/inference/<string:task_id>')
+api.add_resource(Inference, '/inference')
+api.add_resource(InferenceResult, '/inference/<string:task_id>')
 api.add_resource(Compute, '/compute')
 api.add_resource(ComputeResult, '/compute/<string:task_id>')
 
