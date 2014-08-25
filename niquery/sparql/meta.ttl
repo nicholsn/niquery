@@ -34,7 +34,7 @@ rq:meta.rq
     dct:description  "Select all of the queries in meta.ttl and return a table of their attributes." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/meta.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/meta.rq> ;
     dcat:keyword     "query", "meta" ;
     niq:model        niq:QueryMetadata ;
     niq:columns      "?title", "?description", "?creator", "?format", "?downloadURL", "?keywords", "?model" .
@@ -56,7 +56,7 @@ rq:F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq
     dct:description  "Select all of the Named Graphs in a given Quad Store." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq> ;
     dcat:keyword     "named graph" ;
     niq:model        niq:General ;
     niq:columns      "?namedgraph", "?label" .
@@ -67,7 +67,7 @@ rq:BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4.rq
     dct:description  "Select all of the distinct properties in a triplestore." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4.rq> ;
     dcat:keyword     "property" ;
     niq:model        niq:General ;
     niq:columns      "?property" .
@@ -78,7 +78,7 @@ rq:61DA2C92-C08A-4040-A445-E0806CBE552A.rq
     dct:description  "Select all of the distinct classes in a triplestore." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/61DA2C92-C08A-4040-A445-E0806CBE552A.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/61DA2C92-C08A-4040-A445-E0806CBE552A.rq> ;
     dcat:keyword     "property" ;
     niq:model        niq:General ;
     niq:columns      "?property" .
@@ -89,7 +89,7 @@ rq:5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq
     dct:description  "Select all of the stats from a freesurfer object located at a gist." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq> ;
     dcat:keyword     "freesurfer" ;
     niq:model        niq:FreeSurfer ;
     niq:columns      "?subjectID ?tag ?vol ?segID ?annotation ?max ?mean" .
