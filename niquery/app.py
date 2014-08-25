@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import os
 
+import rdflib
 import requests
 from celery import Celery
 from flask import Flask, jsonify, make_response
@@ -54,11 +55,17 @@ api = Api(app)
 
 @api.representation('text/turtle')
 def turtle(data, code, headers=None):
-    import rdflib
     g = rdflib.Graph()
-    g.parse(file=data)
-    resp = make_response(g.serialize(format='turtle'), code)
-    resp.headers.extend(headers or {})
+    try:
+        g.parse(data=data, format='json-ld')
+    except ValueError as e:
+        return make_response(e, code)
+    if list(g.subjects()):
+        resp = make_response(g.serialize(format='turtle'), code)
+        resp.headers.extend(headers or {})
+    else:
+        raise Exception("Data is not a json-ld graph.",
+                        g.serialize(format='json-ld'))
     return resp
 
 celery = make_celery(app)
@@ -86,7 +93,7 @@ def bet(in_file_uri):
     better = BET()
     better.inputs.in_file = os.path.abspath(fname)
     result = better.run()
-    return result.outputs.out_file
+    return result.provenance.rdf().serialize(format='json-ld')
 
 parser = reqparse.RequestParser()
 
@@ -136,7 +143,7 @@ class Compute(Resource):
 class ComputeResult(Resource):
     def get(self, task_id):
         retval = bet.AsyncResult(task_id).get(timeout=1.0)
-        return repr(retval)
+        return jsonify(retval)
 
 # Endpoints
 api.add_resource(Validate, '/validate')
