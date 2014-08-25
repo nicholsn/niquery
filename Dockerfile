@@ -15,13 +15,15 @@ RUN \
   conda update --yes -q conda && \
   conda install --yes -q pip flask mock pandas requests nose networkx scipy numpy ipython-notebook dateutil traits
 RUN \
-  pip install celery && \
-  pip install https://github.com/twilio/flask-restful/archive/master.zip && \
-  pip install https://github.com/RDFLib/rdflib/archive/master.zip && \
-  pip install https://github.com/RDFLib/rdflib-jsonld/archive/master.zip && \
-  pip install https://github.com/trungdong/prov/archive/rdf.zip && \
-  pip install https://github.com/nicholsn/niquery/archive/master.zip && \
-  pip install https://github.com/nipy/nibabel/archive/master.zip && \
+  pip -q install celery && \
+  pip -q install https://github.com/twilio/flask-restful/archive/master.zip && \
+  pip -q install https://github.com/RDFLib/rdflib/archive/master.zip && \
+  pip -q install https://github.com/RDFLib/rdflib-jsonld/archive/master.zip && \
+  pip -q install https://github.com/trungdong/prov/archive/rdf.zip && \
+  pip -q install https://github.com/nicholsn/niquery/archive/master.zip && \
+  pip install https://github.com/nipy/nibabel/archive/master.zip
+
+RUN \
   pip install https://github.com/nipy/nipype/archive/master.zip
 
 EXPOSE 5000
