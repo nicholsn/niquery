@@ -49,7 +49,7 @@ class QueryBase(object):
         """
         Parses the query metadata and load a table of available queries.
         """
-        self._graph.parse(os.path.join(utils.get_meta_path()),
+        self._graph.parse(utils.get_meta_path(),
                           format='turtle')
         result = self._graph.query(self._queries['meta.rq'])
         df = utils.result_to_dataframe(result)

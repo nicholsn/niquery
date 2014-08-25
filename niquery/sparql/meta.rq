@@ -8,7 +8,7 @@ PREFIX niq: <http://purl.org/niquery#>
 
 SELECT DISTINCT ?uri ?title ?description ?creator ?format ?downloadURL (GROUP_CONCAT(?keyword;SEPARATOR=";") AS ?keywords) ?model
 WHERE {
-    ?uri a niq:SelectQuery ;
+    ?uri a ?query ;
         dct:title ?title ;
         dct:description ?description ;
         dct:creator ?creator ;
