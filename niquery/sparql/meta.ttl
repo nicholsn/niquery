@@ -6,7 +6,7 @@
 # 3. The properties listed in the example below should also be included                                      #
 #                                                                                                            #
 # Example:                                                                                                   #
-# <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/example.rq#this>                        #
+# <http://purl.org/niquery/id/example.rq>                                                                    #
 #     a niq:TemplateQuery ;                                                                                  #
 #     dct:title        "Example Select Query" ;                                                              #
 #     dct:description  "This is an example select query description." ;                                      #
@@ -26,7 +26,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix nidm: <http://incf.org/ns/nidash/nidm#> .
 @prefix niq: <http://purl.org/niquery#> .
-@prefix rq: <https://raw.githubusercontent.com/nicholsn/niquery/niquery/sparql/> .
+@prefix rq: <http://purl.org/niquery/id/> .
 
 rq:meta.rq 
     a niq:SelectQuery ;
@@ -94,3 +94,13 @@ rq:5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq
     niq:model        niq:FreeSurfer ;
     niq:columns      "?subjectID ?tag ?vol ?segID ?annotation ?max ?mean" .
 
+rq:5084B377-F0EC-404F-B18C-942756CC610E.rq
+    a niq:AskQuery ;
+    dct:title        "Validate NIDM Dataset Descriptor Summary-level" ;
+    dct:description  "Query a graph to Validate the MUST attributes for the summary level of a descriptor." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Ask ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/5084B377-F0EC-404F-B18C-942756CC610E.rq> ;
+    dcat:keyword     "query", "validate", "dataset descriptors" ;
+    niq:model        niq:DatasetDescriptor ;
+    niq:columns      "Boolean" .
