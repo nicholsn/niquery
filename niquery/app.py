@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 import os
+import json
 
 import rdflib
 import requests
@@ -56,16 +57,9 @@ api = Api(app)
 @api.representation('text/turtle')
 def turtle(data, code, headers=None):
     g = rdflib.Graph()
-    try:
-        g.parse(data=data, format='json-ld')
-    except ValueError as e:
-        return make_response(e, code)
-    if list(g.subjects()):
-        resp = make_response(g.serialize(format='turtle'), code)
-        resp.headers.extend(headers or {})
-    else:
-        raise Exception("Data is not a json-ld graph.",
-                        g.serialize(format='json-ld'))
+    g.parse(data=json.dumps(data), format='json-ld')
+    resp = make_response(g.serialize(format='turtle'), code)
+    resp.headers.extend(headers or {})
     return resp
 
 celery = make_celery(app)
@@ -81,7 +75,8 @@ def bet(in_file_uri):
 
     nipype.config.enable_provenance()
 
-    fname = '/anatomy.nii.gz'
+    os.chdir('/tmp')
+    fname = 'anatomy.nii.gz'
 
     with open(fname, 'wb') as fd:
         response = requests.get(in_file_uri, stream=True)
@@ -143,14 +138,14 @@ class Compute(Resource):
 class ComputeResult(Resource):
     def get(self, task_id):
         retval = bet.AsyncResult(task_id).get(timeout=1.0)
-        return jsonify(retval)
+        return json.loads(retval)
 
 # Endpoints
 api.add_resource(Validate, '/validate')
 api.add_resource(ValidateResult, '/validate/<string:task_id>')
 api.add_resource(Inference, '/inference')
 api.add_resource(InferenceResult, '/inference/<string:task_id>')
-api.add_resource(Compute, '/compute')
+api.add_resource(Compute, '/compute', '/compute/')
 api.add_resource(ComputeResult, '/compute/<string:task_id>')
 
 if __name__ == "__main__":
