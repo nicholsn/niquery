@@ -62,6 +62,7 @@ class Docker(Config):
     broker = 'amqp://{0}:{1}//'.format(host, port)
     CELERY_BROKER_URL = broker
     CELERY_RESULT_BACKEND = broker
+    DEBUG = True
 
     # Virtuoso Configuration
     # TODO: Dockerfile adds VOS or use full connect string?
