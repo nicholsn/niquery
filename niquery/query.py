@@ -41,7 +41,7 @@ class QueryBase(object):
         Extracts the actual query text to execute, based on the query index.
         """
         queries = utils.get_sparql_queries()
-        row = self.sparql_meta.iloc[index]
+        row = self.sparql_meta.ix[index]
         base = os.path.basename(urlparse.urlsplit(row.downloadURL).path)
         return queries[base]
 
@@ -59,7 +59,7 @@ class QueryBase(object):
         """
         Uses the index of a query to return a description
         """
-        return self.sparql_meta.iloc[index]
+        return self.sparql_meta.ix[index]
 
     def execute(self, query_index, turtle_file=None, turtle_url=None):
         """
