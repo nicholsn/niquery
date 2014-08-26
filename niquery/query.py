@@ -36,7 +36,7 @@ class QueryBase(object):
         select_filter = self.sparql_meta.format == str(ns)
         return self.sparql_meta[select_filter]
 
-    def _get_query_string(self, index):
+    def get_query_string(self, index):
         """
         Extracts the actual query text to execute, based on the query index.
         """
@@ -96,7 +96,7 @@ class SelectQuery(QueryBase):
         df : pandas.Dataframe
             Dataframe object of SELECT SPARQL query
         """
-        query = self._get_query_string(query_index)
+        query = self.get_query_string(query_index)
         self._graph.parse(source=turtle_file,
                           location=turtle_url,
                           format='turtle')
@@ -124,7 +124,7 @@ class AskQuery(QueryBase):
         result : bool
             Boolean result from ASK SPARQL query
         """
-        query = self._get_query_string(query_index)
+        query = self.get_query_string(query_index)
         self._graph.parse(source=turtle_file,
                           location=turtle_url,
                           format='turtle')

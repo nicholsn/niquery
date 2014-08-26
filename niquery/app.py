@@ -97,31 +97,32 @@ parser = reqparse.RequestParser()
 
 class Validate(Resource):
     def get(self):
+        """
+        Returns a list of queries used for validation of NIDM queries.
+        """
         ask = AskQuery()
         return ask.sparql_meta.to_dict(outtype='records')
 
 
 class ValidateResult(Resource):
     def get(self, task_id):
-        retval = add.AsyncResult(task_id).get(timeout=1.0)
-        return repr(retval)
+        """
+        Returns the raw query text of a given query.
+        """
+        ask = AskQuery()
+        qid = "http://purl.org/niquery/id/{0}.rq".format(task_id)
+        result = ask.describe_query(qid)
+        return result.to_dict()
 
 
 class Inference(Resource):
     def get(self):
-        x = 5
-        y = 10
-        res = add.apply_async([x, y])
-        context = {"id": res.task_id, "x": x, "y": y}
-        result = "add((x){}, (y){})".format(context['x'], context['y'])
-        goto = "{}".format(context['id'])
-        return jsonify(result=result, goto=goto)
+        pass
 
 
 class InferenceResult(Resource):
     def get(self, task_id):
-        retval = add.AsyncResult(task_id).get(timeout=1.0)
-        return repr(retval)
+        pass
 
 
 class Compute(Resource):
