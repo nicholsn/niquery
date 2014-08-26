@@ -9,6 +9,8 @@ from celery import Celery
 from flask import Flask, jsonify, make_response
 from flask.ext.restful import Api, Resource, reqparse
 
+from niquery.query import AskQuery
+
 
 def create_app(environment=None):
     """
@@ -95,13 +97,8 @@ parser = reqparse.RequestParser()
 
 class Validate(Resource):
     def get(self):
-        x = 5
-        y = 10
-        res = add.apply_async([x, y])
-        context = {"id": res.task_id, "x": x, "y": y}
-        result = "add((x){}, (y){})".format(context['x'], context['y'])
-        goto = "{}".format(context['id'])
-        return jsonify(result=result, goto=goto)
+        ask = AskQuery()
+        return ask.sparql_meta.to_dict(outtype='records')
 
 
 class ValidateResult(Resource):
