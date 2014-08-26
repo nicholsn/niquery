@@ -110,7 +110,7 @@ class ValidateResult(Resource):
         Returns the raw query text of a given query.
         """
         ask = AskQuery()
-        qid = "http://purl.org/niquery/id/{0}.rq".format(task_id)
+        qid = "http://purl.org/niquery/id/{0}".format(task_id)
         result = ask.describe_query(qid)
         return result.to_dict()
 

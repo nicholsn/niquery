@@ -39,68 +39,68 @@ rq:meta.rq
     niq:model        niq:QueryMetadata ;
     niq:columns      "?title", "?description", "?creator", "?format", "?downloadURL", "?keywords", "?model" .
 
-rq:B0E44766-B5FD-442B-98D8-993DF49A868C.rq 
+rq:B0E44766-B5FD-442B-98D8-993DF49A868C
     a niq:SelectQuery ;
     dct:title        "NIDM Dataset Descriptor Summary-level" ;
     dct:description  "Query a graph to match the MUST attributes for the summary level of a descriptor." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/B0E44766-B5FD-442B-98D8-993DF49A868C.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/B0E44766-B5FD-442B-98D8-993DF49A868C> ;
     dcat:keyword     "query", "contrast", "results" ;
     niq:model        niq:Results ;
     niq:columns      "?uri", "?title", "?description", "?creator", "?format", "?downloadURL", "?keyword", "?model" .
     
-rq:F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq
+rq:F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96
     a niq:SelectQuery ;
     dct:title        "Select All Named Graphs" ;
     dct:description  "Select all of the Named Graphs in a given Quad Store." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/F0AEC174-08E0-4C8D-94C1-9EFAFF6B7A96> ;
     dcat:keyword     "named graph" ;
     niq:model        niq:General ;
     niq:columns      "?namedgraph", "?label" .
     
-rq:BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4.rq
+rq:BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4
     a niq:SelectQuery ;
     dct:title        "Select All Distinct Properties" ;
     dct:description  "Select all of the distinct properties in a triplestore." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/BA5F7372-ADCC-41DC-BCE2-97EE6EBFDAD4> ;
     dcat:keyword     "property" ;
     niq:model        niq:General ;
     niq:columns      "?property" .
 
-rq:61DA2C92-C08A-4040-A445-E0806CBE552A.rq
+rq:61DA2C92-C08A-4040-A445-E0806CBE552A
     a niq:SelectQuery ;
     dct:title        "Select All Distinct Classes" ;
     dct:description  "Select all of the distinct classes in a triplestore." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/61DA2C92-C08A-4040-A445-E0806CBE552A.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/61DA2C92-C08A-4040-A445-E0806CBE552A> ;
     dcat:keyword     "property" ;
     niq:model        niq:General ;
     niq:columns      "?property" .
 
-rq:5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq
+rq:5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9
     a niq:SelectQuery ;
     dct:title        "Select a Freesurfer Object with stats" ;
     dct:description  "Select all of the stats from a freesurfer object located at a gist." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9> ;
     dcat:keyword     "freesurfer" ;
     niq:model        niq:FreeSurfer ;
     niq:columns      "?subjectID ?tag ?vol ?segID ?annotation ?max ?mean" .
 
-rq:5084B377-F0EC-404F-B18C-942756CC610E.rq
+rq:5084B377-F0EC-404F-B18C-942756CC610E
     a niq:AskQuery ;
     dct:title        "Validate NIDM Dataset Descriptor Summary-level" ;
     dct:description  "Query a graph to Validate the MUST attributes for the summary level of a descriptor." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Ask ;
-    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/5084B377-F0EC-404F-B18C-942756CC610E.rq> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/5084B377-F0EC-404F-B18C-942756CC610E> ;
     dcat:keyword     "query", "validate", "dataset descriptors" ;
     niq:model        niq:DatasetDescriptor ;
     niq:columns      "Boolean" .
