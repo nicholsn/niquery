@@ -56,7 +56,7 @@ api = Api(app)
 
 @api.representation('text/turtle')
 def turtle(data, code, headers=None):
-    g = rdflib.Graph()
+    g = rdflib.ConjunctiveGraph()  # json-ld parsing works with conjunctive
     g.parse(data=json.dumps(data), format='json-ld')
     resp = make_response(g.serialize(format='turtle'), code)
     resp.headers.extend(headers or {})
@@ -137,8 +137,13 @@ class Compute(Resource):
 
 class ComputeResult(Resource):
     def get(self, task_id):
-        retval = bet.AsyncResult(task_id).get(timeout=1.0)
-        return json.loads(retval)
+        async = bet.AsyncResult(task_id)
+        result = {'task_id': async.id,
+                  'task_state': async.state}
+        if async.ready():
+            prov = async.get(timeout=1.0)
+            result.update({'@graph': json.loads(prov)})
+        return result
 
 # Endpoints
 api.add_resource(Validate, '/validate')
