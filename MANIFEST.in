@@ -1,2 +1,4 @@
 include *.txt
 recursive-include docs *.txt
+recursive-include niquery/sparql *
+recursive-include niquery/static *
