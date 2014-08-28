@@ -29,7 +29,7 @@ def get_meta_path():
 def get_sparql_queries():
     queries = dict()
     for rq_file in os.listdir(_sparql_path):
-        if rq_file.endswith('.rq'):
+        if not rq_file.endswith('.ttl'):
             rq_path = os.path.join(_sparql_path, rq_file)
             with open(rq_path) as rq:
                 queries.update({rq_file: rq.read()})

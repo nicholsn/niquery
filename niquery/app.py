@@ -9,6 +9,7 @@ from celery import Celery
 from flask import Flask, jsonify, make_response
 from flask.ext.restful import Api, Resource, reqparse
 
+from niquery.utils import NS
 from niquery.query import AskQuery, SelectQuery
 
 
@@ -93,6 +94,8 @@ def bet(in_file_uri):
     return result.provenance.rdf().serialize(format='json-ld')
 
 parser = reqparse.RequestParser()
+parser.add_argument('turtle_file')
+parser.add_argument('query_uuid')
 
 
 class Validate(Resource):
@@ -127,10 +130,20 @@ class InferenceResult(Resource):
 
 class Compute(Resource):
     def get(self):
-        in_file_uri = "http://openfmri.s3.amazonaws.com/ds001/sub001/anatomy/highres001.nii.gz"
-        res = bet.apply_async([in_file_uri])
-        result = {"task_id": res.task_id, "task": "Run FSL BET", "in_file_uri": in_file_uri}
-        return jsonify(result=result)
+        select = SelectQuery()
+        compute = select.sparql_meta.query_type == str(NS.niq.ComputeQuery)
+        result = select.sparql_meta[compute]
+        return result.to_dict(outtype='records')
+
+    def post(self):
+        args = parser.parse_args()
+        select = SelectQuery()
+        input = select.execute(args['query_uuid'], turtle_str=args['turtle_file'])
+        return input.to_dict(outtype='records')
+        #in_file_uri = "http://openfmri.s3.amazonaws.com/ds001/sub001/anatomy/highres001.nii.gz"
+        #res = bet.apply_async([in_file_uri])
+        #result = {"task_id": res.task_id, "task": "Run FSL BET", "in_file_uri": in_file_uri}
+        #return jsonify(result=result)
 
 
 class ComputeResult(Resource):

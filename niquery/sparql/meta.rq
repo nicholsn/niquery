@@ -6,9 +6,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX nidm: <http://purl.org/nidash/nidm#>
 PREFIX niq: <http://purl.org/niquery#>
 
-SELECT DISTINCT ?uri ?title ?description ?creator ?format ?downloadURL (GROUP_CONCAT(?keyword;SEPARATOR=";") AS ?keywords) ?model
+SELECT DISTINCT ?uri ?title ?description ?query_type ?creator ?format ?downloadURL (GROUP_CONCAT(?keyword;SEPARATOR=";") AS ?keywords) ?model
 WHERE {
-    ?uri a ?query ;
+    ?uri a ?query_type ;
         dct:title ?title ;
         dct:description ?description ;
         dct:creator ?creator ;

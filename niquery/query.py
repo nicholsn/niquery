@@ -53,7 +53,10 @@ class QueryBase(object):
                           format='turtle')
         result = self._graph.query(self._queries['meta.rq'])
         df = utils.result_to_dataframe(result)
-        return df.set_index(df.uri)
+        uuid_series = df.uri.str.slice(start=27)
+        uuid_series.name = 'uuid'
+        uuid = df.join(uuid_series)
+        return uuid.set_index('uuid')
 
     def describe_query(self, index):
         """
@@ -81,7 +84,7 @@ class SelectQuery(QueryBase):
         super(SelectQuery, self).__init__()
         self.sparql_meta = self._filter_queries(utils.NS.niq.Select)
 
-    def execute(self, query_index, turtle_file=None, turtle_url=None):
+    def execute(self, query_index, turtle_file=None, turtle_str=None, turtle_url=None):
         """
         Execute a query using the index
 
@@ -98,6 +101,7 @@ class SelectQuery(QueryBase):
         """
         query = self.get_query_string(query_index)
         self._graph.parse(source=turtle_file,
+                          data=turtle_str,
                           location=turtle_url,
                           format='turtle')
         result = self._graph.query(query)
@@ -130,4 +134,5 @@ class AskQuery(QueryBase):
                           format='turtle')
         result = self._graph.query(query)
         return result.askAnswer
+
 

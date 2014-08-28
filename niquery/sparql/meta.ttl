@@ -95,7 +95,7 @@ rq:5F3F3F83-B3D3-4351-90CD-24DA52AE7FE9
     niq:columns      "?subjectID ?tag ?vol ?segID ?annotation ?max ?mean" .
 
 rq:5084B377-F0EC-404F-B18C-942756CC610E
-    a niq:AskQuery ;
+    a niq:ValidationQuery ;
     dct:title        "Validate NIDM Dataset Descriptor Summary-level" ;
     dct:description  "Query a graph to Validate the MUST attributes for the summary level of a descriptor." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
@@ -110,8 +110,8 @@ rq:4A5D1346-DDAA-450B-BEA0-B50815FA9766
     dct:title        "Compute BET for every T1 image in the given rdf file" ;
     dct:description  "Query a graph for T1 file URIs in NIfTI GZipped format." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
-    dcat:format      niq:SELECT ;
+    dcat:format      niq:Select ;
     dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/4A5D1346-DDAA-450B-BEA0-B50815FA9766> ;
     dcat:keyword     "query", "compute", "fsl", "bet" ;
     niq:model        niq:Experiment ;
-    niq:columns      "?t1_uri" .
+    niq:columns      "?t1_uri ?task" .
