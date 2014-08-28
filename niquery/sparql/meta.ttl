@@ -104,3 +104,14 @@ rq:5084B377-F0EC-404F-B18C-942756CC610E
     dcat:keyword     "query", "validate", "dataset descriptors" ;
     niq:model        niq:DatasetDescriptor ;
     niq:columns      "Boolean" .
+
+rq:4A5D1346-DDAA-450B-BEA0-B50815FA9766
+    a niq:ComputeQuery ;
+    dct:title        "Compute BET for every T1 image in the given rdf file" ;
+    dct:description  "Query a graph for T1 file URIs in NIfTI GZipped format." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:SELECT ;
+    dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/4A5D1346-DDAA-450B-BEA0-B50815FA9766> ;
+    dcat:keyword     "query", "compute", "fsl", "bet" ;
+    niq:model        niq:Experiment ;
+    niq:columns      "?t1_uri" .
