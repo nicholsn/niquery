@@ -9,7 +9,7 @@ from celery import Celery
 from flask import Flask, jsonify, make_response
 from flask.ext.restful import Api, Resource, reqparse
 
-from niquery.query import AskQuery
+from niquery.query import AskQuery, SelectQuery
 
 
 def create_app(environment=None):

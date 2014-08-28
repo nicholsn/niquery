@@ -14,7 +14,7 @@ class AttrDict(dict):
         self.__dict__ = self
 
 # available namespaces
-NS = AttrDict(nidm=rdflib.Namespace("http://www.incf.org/ns/nidash/nidm#"),
+NS = AttrDict(nidm=rdflib.Namespace("http://purl.org/nidash/nidm#"),
               niq=rdflib.Namespace("http://purl.org/niquery#"),
               rq=rdflib.Namespace("http://purl.org/niquery/id/"),
               prov=rdflib.Namespace("http://www.w3.org/ns/prov#"))
