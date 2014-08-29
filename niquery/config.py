@@ -33,6 +33,10 @@ class Config(object):
     VIRTUOSO_SQLALCHEMY = 'virtuoso://dba:dba@VOS'
     VIRTUOSO_RDFLIB = 'DSN=VOS;UID=dba;PWD=dba;WideAsUTF16=Y'
 
+    # SPARQL/UPDATE Store URIs
+    SPARQL_URI = 'http://localhost:8890/sparql'
+    UPDATE_URI = 'http://localhost:8890/sparql-auth'
+    
 
 class Development(Config):
     """
