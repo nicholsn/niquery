@@ -36,9 +36,16 @@ class Config(object):
     # SPARQL/UPDATE Store URIs
     SPARQL_URI = 'http://localhost:8890/sparql'
     UPDATE_URI = 'http://localhost:8890/sparql-auth'
+    UPDATE_USR = 'dba'
+    UPDATE_PWD = 'dba'
+    UPDATE_AUTH = 'Digest'
 
     def get(self, attr):
-        return self.__getattribute__(attr)
+        try:
+            result = self.__getattribute__(attr)
+        except AttributeError:
+            result = None
+        return result
 
 
 class Development(Config):
