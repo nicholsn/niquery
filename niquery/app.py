@@ -72,12 +72,14 @@ def add(x, y):
     return x + y
 
 @celery.task(name='tasks.bet')
-def bet(in_file_uri):
+def bet(record):
     import nipype
     from nipype.interfaces.fsl import BET
 
     nipype.config.enable_provenance()
 
+    in_file_uri = record['t1_uri']
+    print in_file_uri
     os.chdir('/tmp')
     fname = 'anatomy.nii.gz'
 
@@ -137,18 +139,21 @@ class Compute(Resource):
 
     def post(self):
         args = parser.parse_args()
+        result = []
         select = SelectQuery()
         input = select.execute(args['query_uuid'], turtle_str=args['turtle_file'])
-        return input.to_dict(outtype='records')
-        #in_file_uri = "http://openfmri.s3.amazonaws.com/ds001/sub001/anatomy/highres001.nii.gz"
-        #res = bet.apply_async([in_file_uri])
-        #result = {"task_id": res.task_id, "task": "Run FSL BET", "in_file_uri": in_file_uri}
-        #return jsonify(result=result)
+        for record in input.to_dict(outtype='records'):
+            task_id = record['task']
+            task = celery.tasks[task_id]
+            res = task.apply_async([record])
+            record.update({"task_id": res.task_id})
+            result.append(record)
+        return result
 
 
 class ComputeResult(Resource):
     def get(self, task_id):
-        async = bet.AsyncResult(task_id)
+        async = celery.AsyncResult(task_id)
         result = {'task_id': async.id,
                   'task_state': async.state}
         if async.ready():
