@@ -19,7 +19,8 @@ NS = AttrDict(nidm=rdflib.Namespace("http://purl.org/nidash/nidm#"),
               rq=rdflib.Namespace("http://purl.org/niquery/id/"),
               prov=rdflib.Namespace("http://www.w3.org/ns/prov#"))
 
-_sparql_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'sparql')
+_sparql_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                            'sparql')
 
 
 def get_meta_path():
@@ -27,6 +28,10 @@ def get_meta_path():
 
 
 def get_sparql_queries():
+    """
+    Loads files in `niquery/sparql` and returns a dict of UUIDs and query
+    text.
+    """
     queries = dict()
     for rq_file in os.listdir(_sparql_path):
         if not rq_file.endswith('.ttl'):
