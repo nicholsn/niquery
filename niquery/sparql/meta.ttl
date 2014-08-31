@@ -118,11 +118,11 @@ rq:4A5D1346-DDAA-450B-BEA0-B50815FA9766
 
 rq:E0921842-1EDB-49F8-A4B3-BA51B85AD407
     a niq:SelectQuery ;
-    dct:title        "Return a list of sha512 from PROV Entities" ;
+    dct:title        "Nipype interface and sha512 of inputs from PROV Entities" ;
     dct:description  "Query a graph for sha512 checksums from PROV Entities, generally in a Nipype workflow." ;
     dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
     dcat:format      niq:Select ;
     dcat:downloadURL <https://raw.githubusercontent.com/nicholsn/niquery/master/niquery/sparql/E0921842-1EDB-49F8-A4B3-BA51B85AD407> ;
-    dcat:keyword     "query", "nipype", "shasum", "prov" ;
+    dcat:keyword     "query", "nipype", "shasum" ;
     niq:model        niq:Workflow ;
-    niq:columns      "?sha512" .
+    niq:columns      "?interface ?sha512" .

@@ -1,12 +1,16 @@
-# Return a list of sha512 from PROV Entities
+# Nipype interface and sha512 of inputs from PROV Entities
 # Query a graph for sha512 checksums from PROV Entities, generally in a Nipype workflow.
 
 PREFIX crypto: <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/>
+PREFIX nipype: <http://nipy.org/nipype/terms/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 
-SELECT DISTINCT ?sha512
+SELECT DISTINCT ?interface ?sha512
 WHERE {
        ?file
            crypto:sha512 ?sha512 ;
            a prov:Entity .
+       ?activity
+           prov:used ?file ;
+           nipype:interface ?interface .
       }
