@@ -7,7 +7,7 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 
 SELECT DISTINCT ?graph ?interface ?sha512
 WHERE {
-       ?graph
+       GRAPH ?graph
            {
             ?file
                 crypto:sha512 ?sha512 ;
