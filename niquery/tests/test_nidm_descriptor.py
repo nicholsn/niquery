@@ -12,7 +12,8 @@ class DescriptorCase(unittest.TestCase):
     NIDM Dataset Descriptor Validation
     """
     def setUp(self):
-        self.turtle = os.path.join(os.path.dirname(__file__), 'data', 'nidm-descriptor.ttl')
+        self.turtle = os.path.join(os.path.dirname(__file__),
+                                   'data', 'nidm-descriptor.ttl')
         self.select = niq.SelectQuery()
 
     def test_project_summary_must(self):
@@ -23,7 +24,7 @@ class DescriptorCase(unittest.TestCase):
         test_filter = self.select.sparql_meta.downloadURL.str.contains(test_query)
         test_record = self.select.sparql_meta[test_filter]
         idx = test_record.index.to_native_types()[0]
-        result = self.select.execute(idx, turtle_file=self.turtle)
+        result = self.select.execute_select(idx, turtle_file=self.turtle)
         # check that each of the required elements are present
         self.assertEqual(urlparse.urlparse(result.uri[0]).fragment, "database")
         self.assertEqual(result.title[0], "Database Summary Title")
