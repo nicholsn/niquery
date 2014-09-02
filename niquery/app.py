@@ -2,11 +2,12 @@ from __future__ import absolute_import
 
 import os
 import json
+import hashlib
 
 import rdflib
 import requests
 from celery import Celery
-from flask import Flask, jsonify, make_response
+from flask import Flask, make_response
 from flask.ext.restful import Api, Resource, reqparse
 
 from niquery.utils import NS
@@ -75,11 +76,11 @@ def add(x, y):
 def bet(record):
     import nipype
     from nipype.interfaces.fsl import BET
+    from nipype.utils.filemanip import hash_infile
 
     nipype.config.enable_provenance()
 
     in_file_uri = record['t1_uri']
-    print in_file_uri
     os.chdir('/tmp')
     fname = 'anatomy.nii.gz'
 
@@ -90,10 +91,23 @@ def bet(record):
         for chunk in response.iter_content(1024):
             fd.write(chunk)
 
-    better = BET()
-    better.inputs.in_file = os.path.abspath(fname)
-    result = better.run()
-    return result.provenance.rdf().serialize(format='json-ld')
+    # Check if interface has run with this input before
+    sha = hash_infile(os.path.abspath(fname), crypto=hashlib.sha512)
+    select = SelectQuery(config=app.config)
+    res = select.execute_select('E0921842-1EDB-49F8-A4B3-BA51B85AD407')
+    sha_recs = res[res.sha512.str.contains(sha)]
+    bet_recs = res[res.interface.str.contains('BET')]
+    results = dict()
+    if sha_recs.empty or \
+            (not sha_recs.empty and bet_recs.empty):
+        better = BET()
+        better.inputs.in_file = os.path.abspath(fname)
+        result = better.run()
+        prov = result.provenance.rdf().serialize(format='json-ld')
+        results.update({'prov': prov})
+    else:
+        results.update({'prov': res.to_json(orient='records')})
+    return results
 
 parser = reqparse.RequestParser()
 parser.add_argument('turtle_file')
@@ -132,7 +146,7 @@ class InferenceResult(Resource):
 
 class Compute(Resource):
     def get(self):
-        select = SelectQuery()
+        select = SelectQuery(config=app.config)
         compute = select.sparql_meta.query_type == str(NS.niq.ComputeQuery)
         result = select.sparql_meta[compute]
         return result.to_dict(outtype='records')
@@ -141,8 +155,9 @@ class Compute(Resource):
         args = parser.parse_args()
         result = []
         select = SelectQuery()
-        input = select.execute(args['query_uuid'], turtle_str=args['turtle_file'])
-        for record in input.to_dict(outtype='records'):
+        df = select.execute_select(args['query_uuid'],
+                                   turtle_str=args['turtle_file'])
+        for record in df.to_dict(outtype='records'):
             task_id = record['task']
             task = celery.tasks[task_id]
             res = task.apply_async([record])
@@ -158,7 +173,7 @@ class ComputeResult(Resource):
                   'task_state': async.state}
         if async.ready():
             prov = async.get(timeout=1.0)
-            result.update({'@graph': json.loads(prov)})
+            result.update({'@graph': json.loads(prov['prov'])})
         return result
 
 # Endpoints
