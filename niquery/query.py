@@ -1,5 +1,6 @@
 """
-The query module provides an object to access SPARQL queries over PROV and NI-DM objects.
+The query module provides an object to access SPARQL queries over PROV and NIDM
+ objects.
 """
 __author__ = 'Nolan Nichols <http://orcid.org/0000-0003-1099-3328>'
 
@@ -13,20 +14,42 @@ import niquery.utils as utils
 
 class QueryBase(object):
     """
-    Base Query class that initializes a graph and provides available sparql metadata descriptions.
+    Base Query class that initializes a graph and provides available sparql
+    metadata descriptions.
     """
     def __init__(self):
-        self._graph = rdflib.Graph()
+        self._config = None
+        self._graph = self._build_graph()
         self._queries = utils.get_sparql_queries()
-        self._bind_prefixes()
         self.sparql_meta = self._get_sparql_meta()
 
-    def _bind_prefixes(self):
+    def _build_graph(self, config=None):
         """
-        Loads the base set of namespaces into rdflib
+        Builds a rdflib graph base on config with SPARQLStore URIs
         """
+        self._config = config
+        if self._config:
+            sparql_uri = self._config.get('SPARQL_URI')
+            update_uri = self._config.get('UPDATE_URI')
+            update_usr = self._config.get('UPDATE_USR')
+            update_pwd = self._config.get('UPDATE_PWD')
+            update_auth = self._config.get('UPDATE_AUTH')
+            if sparql_uri and update_uri:
+                g = rdflib.ConjunctiveGraph('SPARQLUpdateStore')
+                g.open((sparql_uri, update_uri))
+                g.store.setCredentials(update_usr, update_pwd)
+                g.store.setHTTPAuth(update_auth)
+            elif sparql_uri:
+                g = rdflib.ConjunctiveGraph('SPARQLStore')
+                g.open(sparql_uri)
+            else:
+                raise Exception("Config must contain SPARQL/UPDATE URIs")
+        else:
+            g = rdflib.ConjunctiveGraph()
+        # Loads the base set of namespaces into rdflib
         for prefix, namespace in utils.NS.iteritems():
-            self._graph.bind(prefix, namespace)
+            g.bind(prefix, namespace)
+        return g
 
     def _filter_queries(self, ns):
         """
@@ -49,7 +72,8 @@ class QueryBase(object):
         """
         Parses the query metadata and load a table of available queries.
         """
-        self._graph.parse(utils.get_meta_path(),
+        self._graph.parse(source=utils.get_meta_path(),
+                          publicID=''.join(['file://', utils.get_meta_path()]),
                           format='turtle')
         result = self._graph.query(self._queries['meta.rq'])
         df = utils.result_to_dataframe(result)
@@ -64,13 +88,38 @@ class QueryBase(object):
         """
         return self.sparql_meta.ix[index]
 
-    def execute(self, query_index, turtle_file=None, turtle_url=None):
-        """
-        Execute a query using the index
+    def execute(self, query_index,
+                turtle_file=None, turtle_str=None, turtle_url=None):
 
-        Subclasses define specific parameters and returns
         """
-        pass
+        Execute a query stored in `niquery/sparql/` after loading an
+        optional graph.
+
+        Note: Each query type provides its own response type (e.g., Pandas
+        Dataframe, Boolean, etc.)
+
+        Parameters
+        ----------
+        query_index : str
+        turtle_file : str, optional
+        turtle_str : str, optional
+        turtle_url : str, optional
+        sparql_store : str, optional
+        update_store : str, optional
+
+        Returns
+        -------
+        result : rdflib.plugins.sparql.processor.SPARQLResult
+            rdflib SPARQLResult object
+        """
+        query = self.get_query_string(query_index)
+        if turtle_file or turtle_str or turtle_url:
+            self._graph.parse(source=turtle_file,
+                              data=turtle_str,
+                              location=turtle_url,
+                              format='turtle')
+        result = self._graph.query(query)
+        return result
 
     def get_graph(self):
         """
@@ -80,31 +129,25 @@ class QueryBase(object):
 
 
 class SelectQuery(QueryBase):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super(SelectQuery, self).__init__()
+        self._graph = self._build_graph(kwargs.get('config'))
         self.sparql_meta = self._filter_queries(utils.NS.niq.Select)
 
-    def execute(self, query_index, turtle_file=None, turtle_str=None, turtle_url=None):
+    def execute_select(self, query_index, **kwargs):
         """
-        Execute a query using the index
+        Execute a query, but return dataframe of the results.
 
         Parameters
         ----------
         query_index : str
-        turtle_file : str, optional
-        turtle_url : str, optional
 
         Returns
         -------
         df : pandas.Dataframe
             Dataframe object of SELECT SPARQL query
         """
-        query = self.get_query_string(query_index)
-        self._graph.parse(source=turtle_file,
-                          data=turtle_str,
-                          location=turtle_url,
-                          format='turtle')
-        result = self._graph.query(query)
+        result = self.execute(query_index, **kwargs)
         return utils.result_to_dataframe(result)
 
 
@@ -113,26 +156,20 @@ class AskQuery(QueryBase):
         super(AskQuery, self).__init__()
         self.sparql_meta = self._filter_queries(utils.NS.niq.Ask)
 
-    def execute(self, query_index, turtle_file=None, turtle_url=None):
+    def execute_ask(self, query_index, **kwargs):
         """
-        Execute a query using the index
+        Execute a query, but only return the boolean response
 
         Parameters
         ----------
         query_index : str
-        turtle_file : str, optional
-        turtle_url : str, optional
 
         Returns
         -------
         result : bool
             Boolean result from ASK SPARQL query
         """
-        query = self.get_query_string(query_index)
-        self._graph.parse(source=turtle_file,
-                          location=turtle_url,
-                          format='turtle')
-        result = self._graph.query(query)
+        result = self.execute(query_index, **kwargs)
         return result.askAnswer
 
 
