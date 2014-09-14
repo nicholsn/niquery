@@ -173,7 +173,12 @@ class ComputeResult(Resource):
                   'task_state': async.state}
         if async.ready():
             prov = async.get(timeout=1.0)
-            result.update({'@graph': json.loads(prov['prov'])})
+            graph = json.loads(prov['prov'])
+            result.update({'@graph': graph})
+            select = SelectQuery(config=app.config)
+            ctx = select.get_graph()
+            g = rdflib.Graph(store=ctx.store, identifier=NS.iri[async.id])
+            g.parse(data=result, format='json-ld')
         return result
 
 # Endpoints
