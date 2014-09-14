@@ -17,9 +17,9 @@ class QueryBase(object):
     Base Query class that initializes a graph and provides available sparql
     metadata descriptions.
     """
-    def __init__(self):
+    def __init__(self, **kwargs):
         self._config = None
-        self._graph = self._build_graph()
+        self._graph = self._build_graph(**kwargs)
         self._queries = utils.get_sparql_queries()
         self.sparql_meta = self._get_sparql_meta()
 
