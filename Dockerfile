@@ -16,6 +16,7 @@ RUN \
   conda install --yes -q pip flask mock pandas requests nose networkx scipy numpy ipython-notebook dateutil traits
 RUN \
   pip -q install celery && \
+  pip -q install urlgrabber && \
   pip -q install https://github.com/twilio/flask-restful/archive/master.zip && \
   pip -q install https://github.com/RDFLib/sparqlwrapper/archive/master.zip && \
   pip -q install https://github.com/RDFLib/rdflib/archive/master.zip && \
