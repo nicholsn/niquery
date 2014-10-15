@@ -13,7 +13,7 @@ ENV PATH /usr/local/miniconda/bin:$PATH
 
 RUN \
   conda update --yes -q conda && \
-  conda install --yes -q pip flask mock pandas requests nose networkx scipy numpy ipython-notebook dateutil traits
+  conda install --yes -q pip flask mock pandas requests nose networkx scipy numpy ipython-notebook dateutil traits pycurl
 RUN \
   pip -q install celery && \
   pip -q install urlgrabber && \
