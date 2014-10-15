@@ -80,6 +80,16 @@ class Docker(Config):
 
     # Virtuoso Configuration
     # TODO: Dockerfile adds VOS or use full connect string?
+    
+    # SPARQL/UPDATE Store URIs
+    host = os.environ.get('VIRT_PORT_8890_TCP_ADDR', None)
+    port = os.environ.get('VIRT_PORT_8890_TCP_PORT', None)
+    base_uri = 'http://{0}:{1}/'.format(host, port)
+    SPARQL_URI = ''.join([base_uri, 'sparql'])
+    UPDATE_URI = ''.join([base_uri, 'sparql-auth'])
+    UPDATE_USR = 'dba'
+    UPDATE_PWD = 'dba'
+    UPDATE_AUTH = 'Digest'
 
 
 class Testing(Config):
