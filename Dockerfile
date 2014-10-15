@@ -17,6 +17,7 @@ RUN \
 RUN \
   pip -q install celery && \
   pip -q install https://github.com/twilio/flask-restful/archive/master.zip && \
+  pip -q install https://github.com/RDFLib/sparqlwrapper/archive/master.zip && \
   pip -q install https://github.com/RDFLib/rdflib/archive/master.zip && \
   pip -q install https://github.com/RDFLib/rdflib-jsonld/archive/master.zip && \
   pip -q install https://github.com/trungdong/prov/archive/rdf.zip && \
