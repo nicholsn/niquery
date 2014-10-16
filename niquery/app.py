@@ -178,15 +178,16 @@ class ComputeResult(Resource):
             # connect to the configured store
             store = SelectQuery(config=app.config).get_graph().store
             sparql_store = rdflib.ConjunctiveGraph(store=store,
-                                                   identifier=NS.iri[async.id])
+                                                   identifier=NS.iri[async.id])  
             
-            # handle lack of support for bnodes
+            # skolemize to handle bnodes and persist graph to sparqlstore
             g = rdflib.Graph()
-            g.parse(data=json.dumps(result['@graph']), format='json-ld')
+            g.parse(data=prov['prov'], format='json-ld')
             g.skolemize(new_graph=sparql_store)
-            
+
+            # include named graph uri in response, and make json-ld compliant
             result.update({'graph_id': NS.iri[async.id],
-                           '@graph': graph}) # send a json-ld graph
+                           '@graph': graph})
         return result
 
 # Endpoints
