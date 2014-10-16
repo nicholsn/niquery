@@ -174,11 +174,19 @@ class ComputeResult(Resource):
         if async.ready():
             prov = async.get(timeout=1.0)
             graph = json.loads(prov['prov'])
-            result.update({'@graph': graph})
-            select = SelectQuery(config=app.config)
-            ctx = select.get_graph()
-            g = rdflib.Graph(store=ctx.store, identifier=NS.iri[async.id])
-            g.parse(data=result, format='json-ld')
+            
+            # connect to the configured store
+            store = SelectQuery(config=app.config).get_graph().store
+            sparql_store = rdflib.ConjunctiveGraph(store=store,
+                                                   identifier=NS.iri[async.id])
+            
+            # handle lack of support for bnodes
+            g = rdflib.Graph()
+            g.parse(data=json.dumps(result['@graph']), format='json-ld')
+            g.skolemize(new_graph=sparql_store)
+            
+            result.update({'graph_id': NS.iri[async.id],
+                           '@graph': graph}) # send a json-ld graph
         return result
 
 # Endpoints
