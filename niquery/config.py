@@ -85,11 +85,13 @@ class Docker(Config):
     host = os.environ.get('VIRT_PORT_8890_TCP_ADDR', None)
     port = os.environ.get('VIRT_PORT_8890_TCP_PORT', None)
     base_uri = 'http://{0}:{1}/'.format(host, port)
-    SPARQL_URI = ''.join([base_uri, 'sparql'])
-    UPDATE_URI = ''.join([base_uri, 'sparql-auth'])
+    #SPARQL_URI = ''.join([base_uri, 'sparql'])
+    #UPDATE_URI = ''.join([base_uri, 'sparql-auth'])
+    SPARQL_URI = 'http://glia.ibic.washington.edu:8890/sparql'
+    UPDATE_URI = 'http://glia.ibic.washington.edu:8890/sparql-auth'
     UPDATE_USR = 'dba'
     UPDATE_PWD = 'dba'
-    UPDATE_AUTH = 'Digest'
+    UPDATE_AUTH = 'DIGEST'
 
 
 class Testing(Config):
