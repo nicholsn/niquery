@@ -126,3 +126,14 @@ rq:E0921842-1EDB-49F8-A4B3-BA51B85AD407
     dcat:keyword     "query", "nipype", "shasum" ;
     niq:model        niq:Workflow ;
     niq:columns      "?interface ?sha512" .
+
+rq:2c5782ea-7b30-11e4-b2ce-67e96e88432a
+    a niq:ComputeQuery ;
+    dct:title        "Compute FreeSurfer recon-all for every T1 image in the given rdf file" ;
+    dct:description  "Query a graph for T1 file URIs in NIfTI GZipped format." ;
+    dct:creator      <http://orcid.org/0000-0003-1099-3328> ;
+    dcat:format      niq:Select ;
+    dcat:downloadURL <http://purl.org/niquery/id/2c5782ea-7b30-11e4-b2ce-67e96e88432a> ;
+    dcat:keyword     "query", "compute", "freesurfer", "recon-all" ;
+    niq:model        niq:Experiment ;
+    niq:columns      "?t1_uri ?task" .
