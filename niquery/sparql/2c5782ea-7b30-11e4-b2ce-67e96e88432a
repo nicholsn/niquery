@@ -1,0 +1,13 @@
+# Compute FreeSurfer recon-all for every 
+# T1 image in the given rdf file
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX nidm: <http://purl.org/nidash/nidm#>
+
+SELECT DISTINCT ?t1_uri ?task
+WHERE {
+       ?uri a nidm:MRIAnatomicalT1 ;
+           dcat:downloadURL ?t1_uri ;
+           dcat:format nidm:NIFTI1Gzip .
+       VALUES (?task) {("tasks.fs_reconall")}
+      }
